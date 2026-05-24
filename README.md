@@ -50,9 +50,7 @@ pixelpodweb/
 ├── api/
 │   └── booking_status.php
 ├── config/
-│   └── database.php     ← DB settings
-├── database/
-│   └── pixelpod_db.sql    
+│   └── database.php     ← DB settings 
 ├── includes/
 │   ├── auth.php
 │   ├── header.php
