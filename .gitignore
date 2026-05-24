@@ -1,0 +1,14 @@
+# Ignore sensitive files
+config/database.php
+
+# Ignore uploaded photos
+uploads/photos/
+uploads/services/
+
+# Ignore test files
+debug.php
+test_hash.php
+
+# Ignore system files
+.DS_Store
+Thumbs.db
