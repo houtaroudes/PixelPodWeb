@@ -30,16 +30,6 @@
 
 ***
 
-## Admin and Customer accounts
-
-* **Admin** 
-**Username** : PixelPod@gmail.com/PixelPod
-**Password** : pixelpod
-
-**Customer**
-**Username** : bry.sacueza@gmail.com/bryansacueza
-**Password** : bryansacueza
-
 ## File Structure
 
 ```PHP
