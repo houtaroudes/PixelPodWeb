@@ -1,6 +1,6 @@
 # PixelPodWeb
 
-* **GITHUB LINK** : `https://github.com/houtaroudes/PixelPodWebsite-Solo-` (Solo Dev)
+* **GITHUB LINK** : `https://github.com/houtaroudes/PixelPodWeb` (Solo Dev)
 * **P.S** : **I started this developing since march and debugging this for more than 2months just uploaded on my github (May 24.2026)**
             **I don't want anyone steal or copy my own website :)**
 
