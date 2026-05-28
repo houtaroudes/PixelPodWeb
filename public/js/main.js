@@ -61,3 +61,25 @@ document.addEventListener('DOMContentLoaded', () => {
 function confirmAction(msg, formId) {
     if (confirm(msg)) document.getElementById(formId)?.submit();
 }
+
+// Disable Right Click
+document.addEventListener("contextmenu", e=>{
+    e.preventDefault();
+    alert("Right Click Disabled");
+})
+
+//Disable F12
+document.addEventListener("keydown", e=>{
+    if(e.key === "F12"){
+        e.preventDefault();
+        alert("F12 Disabled");
+    }
+})
+
+//Disable Ctrl+Shift+I
+document.addEventListener("keydown", e=>{
+    if(e.ctrlKey && e.shiftKey && e.key === "I"){
+        e.preventDefault();
+        alert("Ctrl+Shift+I Disabled");
+    }
+})
