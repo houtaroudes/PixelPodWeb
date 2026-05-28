@@ -83,3 +83,28 @@ document.addEventListener("keydown", e=>{
         alert("Ctrl+Shift+I Disabled");
     }
 })
+
+//Disable Ctrl+Shift+C
+document.addEventListener("keydown", e=>{
+    if(e.ctrlkey && e.shiftKey && e.key === "C"){
+        e.preventDefault();
+        alert("Ctrl+Shift+C Disabled")
+    }
+})
+
+//Disable Ctrl+Shift+J
+document.addEventListener("keydown", e=>{
+    if(e.ctrlKey && e.shiftKey && e.key === "J"){
+        e.preventDefault();
+        alert("Ctrl+Shift+J Disabled")
+    }
+})
+
+//Disable Ctrl+U
+document.addEventListener("keydown", e=>{
+    if(e.ctrlKey && e.key === "U"){
+        e.preventDefault();
+        alert("Ctrl+U Disabled")
+    }
+})
+
