@@ -3,9 +3,11 @@ define('DB_HOST', 'localhost');
 define('DB_USER', 'your_db_username');
 define('DB_PASS', 'your_db_password');
 define('DB_NAME', 'pixelpod_db');
-define('SITE_URL', 'http://localhost/PixelPodWeb');
-define('SITE_NAME', 'Pixel Pod Photobooth');
+// I edit this line of code 7-8
+define('SITE_URL', 'YOUR URL EXAMPLE');
+define('SITE_NAME', 'YOUR WEBSITE NAME');
 
+// I manualy code this no AI btw -HoutarouDes
 function getDB(): PDO {
     static $pdo = null;
     if ($pdo === null) {
