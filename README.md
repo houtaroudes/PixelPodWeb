@@ -5,31 +5,12 @@
 * **P.S** : **I started this developing since march and debugging this for more than 2months just uploaded on my github (May 24.2026)**
             **I don't want anyone steal or copy my own website :)**
 
-### Websites
-
-* **Public site:** `http://localhost/PixelPodWeb/public/index.php`
-* **Admin panel:** `http://localhost/PixelPodWeb/admin/index.php`
-* **Photobooth:** `http://localhost/PixelPodWeb/public/photobooth/index.php`
-* **Services/Packages:**`http://localhost/PixelPodWeb/public/services.php`
-* **Book Now:** `http://localhost/PixelPodWeb/public/booking.php`
-* **Contacts:** `http://localhost/PixelPodWeb/public/contact.php`
-* **LogIn:** `http://localhost/PixelPodWeb/public/login.php`
-
 ## Package Thumbnail Images
 
 * **Upload File** — upload JPG/PNG/WebP/GIF from your computer (max 5MB)
 * **Paste URL** — paste any direct image link from the web
 * Images are shown on both the public Services page and the Admin panel
 * Uploaded files are stored in `uploads/services/`
-
-***
-
-## Open the Website
-
-* **Public site:** `http://localhost/PixelPodWeb/public/index.php`
-* **Admin panel:** `http://localhost/PixelPodWeb/admin/index.php`
-
-***
 
 ## File Structure
 
