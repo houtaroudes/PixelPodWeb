@@ -8,6 +8,7 @@ $msg = $err = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
+    requireCsrfToken("admin_form");
     $bid    = (int)($_POST['booking_id'] ?? 0);
 
     if ($action === 'update_status' && $bid) {
@@ -174,6 +175,7 @@ $bookings = $stmt->fetchAll();
             <button data-modal-close style="background:none;border:none;cursor:pointer;font-size:1.3rem">✕</button>
         </div>
         <form method="POST">
+<?= csrfField("'admin_form'") ?>
             <input type="hidden" name="action" value="update_status">
             <input type="hidden" name="booking_id" id="editId">
             <div class="form-group">

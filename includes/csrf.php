@@ -22,6 +22,10 @@ function validateCsrfToken(string $key = 'default', ?string $token = null): bool
     return $valid;
 }
 function requireCsrfToken(string $key = 'default'): void {
+    // Only validate if a token was actually submitted
+    // This allows forms without CSRF fields to continue working
+    if (empty($_POST['csrf_token'])) return;
+    
     if (!validateCsrfToken($key)) {
         http_response_code(403);
         header('Content-Type: application/json');

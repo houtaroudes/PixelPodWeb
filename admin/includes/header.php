@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . '/../../includes/auth.php';
+require_once __DIR__ . "'/../../includes/csrf.php'";
+require_once __DIR__ . "'/../../includes/security.php'";
 requireAdmin();
 $pageTitle  = $pageTitle  ?? 'Dashboard';
 $activePage = $activePage ?? 'dashboard';

@@ -9,6 +9,7 @@ $msg = $err = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
+    requireCsrfToken("admin_form");
 
     if ($action === 'add') {
         $imgResult = handleServiceImage($_FILES['image'] ?? [], $_POST['image_url'] ?? '');
@@ -183,6 +184,7 @@ $grads = ['135deg,#6b0f0f,#8b1a1a','135deg,#4a0808,#c9a84c','135deg,#8b1a1a,#c94
             <button data-modal-close style="background:none;border:none;cursor:pointer;font-size:1.3rem">✕</button>
         </div>
         <form method="POST">
+<?= csrfField("'admin_form'") ?>
             <input type="hidden" name="action" value="edit">
             <input type="hidden" name="id" id="editId">
             <div class="form-group"><label>Package Name *</label><input type="text" name="name" id="editName" required></div>

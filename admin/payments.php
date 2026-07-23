@@ -7,6 +7,7 @@ $pdo = getDB();
 $msg = '';
 
 if ($_SERVER['REQUEST_METHOD']==='POST' && ($_POST['action']??'')==='update') {
+    requireCsrfToken("admin_form");
     $pid    = (int)$_POST['payment_id'];
     $status = sanitize($_POST['payment_status']);
     $method = sanitize($_POST['payment_method']);
@@ -118,6 +119,7 @@ $totalPending = $pdo->query("SELECT COUNT(*) FROM payments WHERE payment_status=
             <button data-modal-close style="background:none;border:none;cursor:pointer;font-size:1.3rem">✕</button>
         </div>
         <form method="POST">
+<?= csrfField("'admin_form'") ?>
             <input type="hidden" name="action" value="update">
             <input type="hidden" name="payment_id" id="epId">
             <div class="form-group"><label>Booking</label><input type="text" id="epRef" disabled style="opacity:.6"></div>

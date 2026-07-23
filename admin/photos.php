@@ -6,6 +6,7 @@ $pdo = getDB();
 
 // Delete session
 if ($_SERVER['REQUEST_METHOD']==='POST' && ($_POST['action']??'')==='delete') {
+    requireCsrfToken("admin_form");
     $id = intval($_POST['session_id']??0);
     // Get photos to delete files
     $s = $pdo->prepare("SELECT photos,qr_code FROM photo_sessions WHERE id=?");

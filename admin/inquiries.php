@@ -7,6 +7,8 @@ $pdo = getDB();
 $msg = '';
 
 if ($_SERVER['REQUEST_METHOD']==='POST') {
+    $action = $_POST["action"] ?? "";
+    requireCsrfToken("admin_form");
     $action = $_POST['action'] ?? '';
     $iid    = (int)($_POST['inquiry_id'] ?? 0);
     if ($action==='mark_read'&&$iid)     { $pdo->prepare("UPDATE inquiries SET is_read=1 WHERE id=?")->execute([$iid]); $msg='Marked as read.'; }
@@ -30,7 +32,8 @@ $unreadCount= $pdo->query("SELECT COUNT(*) FROM inquiries WHERE is_read=0")->fet
         <div class="admin-page-title">Contact Inquiries</div>
         <div class="admin-page-sub"><?= count($inquiries) ?> total · <?= $unreadCount ?> unread</div>
     </div>
-    <form method="POST"><input type="hidden" name="action" value="mark_all_read">
+    <form method="POST">
+<?= csrfField("'admin_form'") ?><input type="hidden" name="action" value="mark_all_read">
         <button type="submit" class="btn-cancel" style="padding:9px 20px">&#9989; Mark All Read</button>
     </form>
 </div>

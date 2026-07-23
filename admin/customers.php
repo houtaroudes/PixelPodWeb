@@ -7,6 +7,7 @@ $pdo = getDB();
 $msg = '';
 
 if ($_SERVER['REQUEST_METHOD']==='POST' && ($_POST['action']??'')==='delete') {
+    requireCsrfToken("admin_form");
     $pdo->prepare("DELETE FROM users WHERE id=? AND role='customer'")->execute([(int)$_POST['user_id']]);
     $msg = 'Customer removed.';
 }

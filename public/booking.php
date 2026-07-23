@@ -8,6 +8,7 @@ $pre = isset($_GET['service_id']) ? (int)$_GET['service_id'] : 0;
 $error = $success = '';
 
 if ($_SERVER['REQUEST_METHOD']==='POST') {
+    requireCsrfToken("'booking'");
     $sid    = (int)$_POST['service_id'];
     $ename  = sanitize($_POST['event_name']??'');
     $edate  = sanitize($_POST['event_date']??'');
@@ -58,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
     <?php if($success): ?><div class="alert alert-success"><?= $success ?><br><br><a href="<?= SITE_URL ?>/public/dashboard.php" class="btn-primary">View My Bookings →</a></div>
     <?php else: ?>
     <form method="POST">
+          <?= csrfField("'booking'") ?>
       <div class="form-row">
         <div class="form-group">
           <label>Package *</label>

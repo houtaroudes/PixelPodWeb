@@ -5,6 +5,7 @@ header('Content-Type: application/json');
 if (!isAdmin()) { echo json_encode(['success'=>false,'message'=>'Unauthorized.']); exit; }
 if ($_SERVER['REQUEST_METHOD']!=='POST') { echo json_encode(['success'=>false,'message'=>'Method not allowed.']); exit; }
 
+    requireCsrfToken("'api_booking'");
 $id      = (int)($_POST['booking_id'] ?? 0);
 $status  = sanitize($_POST['status'] ?? '');
 $allowed = ['approved','rejected','cancelled','completed','pending'];

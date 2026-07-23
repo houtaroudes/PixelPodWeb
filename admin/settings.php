@@ -9,6 +9,7 @@ $msg = $err = '';
 // Handle account actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
+    requireCsrfToken("admin_form");
 
     // CREATE new user (admin or customer)
     if ($action === 'create_user') {
@@ -209,6 +210,7 @@ $customers = $pdo->query("SELECT * FROM users WHERE role='customer' ORDER BY cre
             <button data-modal-close style="background:none;border:none;cursor:pointer;font-size:1.3rem">✕</button>
         </div>
         <form method="POST">
+<?= csrfField("'admin_form'") ?>
             <input type="hidden" name="action" value="create_user">
             <div class="form-group">
                 <label>Role *</label>
@@ -264,6 +266,7 @@ $customers = $pdo->query("SELECT * FROM users WHERE role='customer' ORDER BY cre
         </div>
         <div id="resetLabel" style="font-size:.88rem;color:var(--text-mid);margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border)"></div>
         <form method="POST">
+<?= csrfField("'admin_form'") ?>
             <input type="hidden" name="action"  value="reset_password">
             <input type="hidden" name="user_id" id="resetUserId">
             <div class="form-group">
