@@ -3,6 +3,7 @@ $pageTitle = 'Contact Us';
 require_once __DIR__ . '/../includes/header.php';
 $error = $success = '';
 if ($_SERVER['REQUEST_METHOD']==='POST') {
+    requireCsrfToken('contact');
     $name = sanitize($_POST['full_name']??''); $email = sanitizeEmail($_POST['email']??'');
     $phone = sanitize($_POST['phone']??''); $subject = sanitize($_POST['subject']??''); $msg = sanitize($_POST['message']??'');
     if (!$name||!$email||!$msg) $error='Please fill name, email and message.';
@@ -27,13 +28,16 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
       <div>
         <h3 style="font-family:var(--font-display);font-size:1.5rem;color:var(--maroon-deep);margin-bottom:20px">Reach Pixel Pod</h3>
         <p style="color:var(--text-mid);margin-bottom:32px;font-size:.95rem">Have questions about packages, availability, or want a custom quote? Reach us on any channel.</p>
-        <div class="contact-item"><div class="contact-item-icon">&#128386;</div><div><p style="font-size:.82rem;color:var(--text-light)">Email</p><strong><a href="mailto:pixelpod.ph@gmail.com">pixelpod.ph@gmail.com</a></strong></div></div>
+        <div class="contact-item"><div class="contact-item-icon">&#128386;</div><div><p style="font-size:.82rem;color:var(--text-light)">Email</p><strong><a href="mailto:houtaroudes@gmail.com">houtaroudes@gmail.com</a></strong></div></div>
         <div class="contact-item"><div class="contact-item-icon">&#128222;</div><div><p style="font-size:.82rem;color:var(--text-light)">Phone / Viber</p><strong><a href="tel:0917 130 4683">0917 130 4683</a></strong></div></div>
         <div class="contact-item"><div class="contact-item-icon">&#128077;</div><div><p style="font-size:.82rem;color:var(--text-light)">Facebook</p><strong><a href="https://facebook.com/pxlpod.ph" target="_blank">pxlpod.ph</a></strong></div></div>
         <div class="contact-item"><div class="contact-item-icon">&#128248;</div><div><p style="font-size:.82rem;color:var(--text-light)">Instagram</p><strong><a href="https://instagram.com/pixelpod.ph" target="_blank">@pixelpod.ph</a></strong></div></div>
         <div style="margin-top:32px;padding:20px;background:rgba(107,15,15,.05);border-radius:16px;border:1px solid rgba(107,15,15,.1)">
           <h4 style="font-family:var(--font-display);color:var(--maroon-deep);margin-bottom:8px">Response Hours</h4>
           <p style="font-size:.9rem;color:var(--text-mid);line-height:1.7">Mon–Sat: 9:00 AM – 8:00 PM<br>Sun: 10:00 AM – 6:00 PM</p>
+        </div>
+        <div style="margin-top:16px;padding:16px 20px;background:rgba(0,0,0,.02);border-radius:12px;border:1px solid rgba(0,0,0,.06)">
+          <p style="font-size:.85rem;color:var(--text-light)">Built with dedication by <strong><a href="mailto:houtaroudes@gmail.com" style="color:var(--maroon-deep);text-decoration:underline">HoutarouDes</a></strong></p>
         </div>
       </div>
       <div class="form-wrapper" style="max-width:none;padding:40px">
@@ -42,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
         <?php if($success): ?><div class="alert alert-success"><?= $success ?></div>
         <?php else: ?>
         <form method="POST">
+          <?= csrfField('contact') ?>
           <div class="form-row">
             <div class="form-group"><label>Full Name *</label><input type="text" name="full_name" required placeholder="Your full name" value="<?= htmlspecialchars($_POST['full_name']??'') ?>"></div>
             <div class="form-group"><label>Email *</label><input type="email" name="email" required placeholder="you@email.com" value="<?= htmlspecialchars($_POST['email']??'') ?>"></div>

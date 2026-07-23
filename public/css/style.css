@@ -1071,3 +1071,38 @@ section {
     overflow-x: auto;
   }
 }
+
+/* Footer — Developer Credit */
+.footer-dev {
+  font-size: 0.8rem;
+  margin-top: 6px;
+  opacity: 0.7;
+}
+.footer-dev a {
+  color: var(--gold-light);
+  text-decoration: underline;
+  transition: opacity 0.2s ease;
+}
+.footer-dev a:hover {
+  opacity: 0.8;
+}
+  .data-table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+/* Footer — Developer Credit */
+.footer-dev {
+  font-size: 0.8rem;
+  margin-top: 6px;
+  opacity: 0.7;
+}
+.footer-dev a {
+  color: var(--gold-light);
+  text-decoration: underline;
+  transition: opacity 0.2s ease;
+}
+.footer-dev a:hover {
+  opacity: 0.8;
+}

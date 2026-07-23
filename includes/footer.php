@@ -18,10 +18,10 @@
     </div>
     <div class="footer-contact">
       <h4>Get in Touch</h4>
-      <p>&#128386; pixelpod.ph@gmail.com</p>
+      <p>&#128386; <a href="mailto:houtaroudes@gmail.com">houtaroudes@gmail.com</a></p>
       <p>&#9990; +63 917 130 4683</p>
-      <p><i class="fa-regular fa-camera"></i> Instagram: @pixelpod.ph</p>
-      <p><i class="fa-brands fa-facebook-f"></i> Facebook: pxlpod.ph</p>
+      <p>Instagram: @pixelpod.ph</p>
+      <p>Facebook: pxlpod.ph</p>
       <div class="footer-social">
         <a href="https://facebook.com/pxlpod.ph" target="_blank" class="social-btn">FB</a>
         <a href="https://instagram.com/pixelpod.ph" target="_blank" class="social-btn">IG</a>
@@ -30,6 +30,7 @@
   </div>
   <div class="footer-bottom">
     <p>&copy; <?= date('Y') ?> Pixel Pod Photobooth. All rights reserved.</p>
+    <p class="footer-dev">Built with dedication by <a href="mailto:houtaroudes@gmail.com">HoutarouDes</a></p>
   </div>
 </footer>
 <script src="<?= SITE_URL ?>/public/js/main.js"></script>

@@ -1,18 +1,18 @@
 <?php
 require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/csrf.php';
+require_once __DIR__ . '/../includes/security.php';
+sendSecurityHeaders();
+hardenSession();
 if (isLoggedIn()) {
   header('Location: ' . SITE_URL . (isAdmin() ? '/admin/index.php' : '/public/dashboard.php'));
   exit;
 }
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $r = loginUser($_POST['username'] ?? '', $_POST['password'] ?? '');
+  $r = loginUser($_POST['username'] ?? '', $_POST['password'] ?? '', $_POST['csrf_token'] ?? '');
   if ($r['success']) {
-    if ($r['role'] === 'admin') {
-      header('Location: http://localhost/PixelPodWeb/admin/index.php');
-    } else {
-      header('Location: http://localhost/PixelPodWeb/public/index.php');
-    }
+    header('Location: ' . SITE_URL . '/public/dashboard.php');
     exit;
   }
   $error = $r['message'];
@@ -20,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -28,39 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="<?= SITE_URL ?>/public/css/style.css">
   <style>
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=80');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: rgba(56, 8, 8, 0.80);
-      z-index: 0;
-    }
-
-    .auth-page {
-      position: relative;
-      z-index: 1;
-    }
-
-    .auth-page {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px
-    }
+    body { min-height: 100vh; display: flex; flex-direction: column; background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=80'); background-size: cover; background-position: center; background-repeat: no-repeat; }
+    body::before { content: ''; position: fixed; inset: 0; background: rgba(56, 8, 8, 0.80); z-index: 0; }
+    .auth-page { position: relative; z-index: 1; }
+    .auth-page { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px }
   </style>
 </head>
-
 <body>
   <div class="auth-page">
     <div style="width:100%;max-width:440px">
@@ -73,11 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p class="form-sub">Sign in with your username to manage your bookings</p>
         <?php if ($error): ?><div class="alert alert-error"><?= htmlspecialchars($error) ?></div><?php endif; ?>
         <form method="POST">
+          <?= csrfField('login') ?>
           <div class="form-group">
             <label>Username</label>
-            <input type="text" name="username" required autocomplete="username"
-              placeholder="Your username"
-              value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
+            <input type="text" name="username" required autocomplete="username" placeholder="Your username" value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
           </div>
           <div class="form-group">
             <label>Password</label>
