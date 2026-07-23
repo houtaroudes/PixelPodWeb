@@ -5,8 +5,8 @@
     "buildCommand": "composer install --no-dev --optimize-autoloader 2>/dev/null || true"
   },
   "deploy": {
-    "startCommand": "php -S 0.0.0.0:\$PORT -t public/",
-    "healthcheckPath": "/index.php",
+    "startCommand": "php -S 0.0.0.0:$PORT -t public/",
+    "healthcheckPath": "/",
     "healthcheckTimeout": 100,
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 5
