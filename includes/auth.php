@@ -1,5 +1,6 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
+require_once __DIR__ . '/../includes/csrf.php';
     ini_set('session.cookie_httponly', 1);
     ini_set('session.cookie_samesite', 'Lax');
     if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ini_set('session.cookie_secure', 1);
