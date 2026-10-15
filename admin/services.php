@@ -9,7 +9,7 @@ $msg = $err = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
-    requireCsrfToken("admin_form");
+    requireCsrfToken('admin_form');
 
     if ($action === 'add') {
         $imgResult = handleServiceImage($_FILES['image'] ?? [], $_POST['image_url'] ?? '');
@@ -126,11 +126,13 @@ $grads = ['135deg,#6b0f0f,#8b1a1a','135deg,#4a0808,#c9a84c','135deg,#8b1a1a,#c94
             <button class="btn-save" style="padding:8px 16px;font-size:.82rem;flex:1"
                 onclick="openEditModal(<?= htmlspecialchars(json_encode($s),ENT_QUOTES) ?>)">Edit Details</button>
             <form method="POST" style="display:inline">
+            <?= csrfField('admin_form') ?>
                 <input type="hidden" name="action" value="toggle">
                 <input type="hidden" name="id" value="<?= $s['id'] ?>">
                 <button type="submit" class="btn-cancel" style="padding:8px 14px;font-size:.82rem" title="<?= $s['is_active']?'Hide from website':'Show on website' ?>"><?= $s['is_active']?'&#x274C;':'&#128065;' ?></button>
             </form>
             <form method="POST" id="del-svc-<?= $s['id'] ?>" style="display:inline">
+            <?= csrfField('admin_form') ?>
                 <input type="hidden" name="action" value="delete">
                 <input type="hidden" name="id" value="<?= $s['id'] ?>">
                 <button type="button" class="btn-danger" style="padding:8px 14px;font-size:.82rem"
@@ -157,6 +159,7 @@ $grads = ['135deg,#6b0f0f,#8b1a1a','135deg,#4a0808,#c9a84c','135deg,#8b1a1a,#c94
             <button data-modal-close style="background:none;border:none;cursor:pointer;font-size:1.3rem">✕</button>
         </div>
         <form method="POST" enctype="multipart/form-data">
+        <?= csrfField('admin_form') ?>
             <input type="hidden" name="action" value="add">
             <div class="form-group"><label>Package Name *</label><input type="text" name="name" required placeholder="e.g. Classic Booth"></div>
             <div class="form-group"><label>Description</label><textarea name="description" placeholder="What's included…" style="min-height:80px"></textarea></div>
@@ -184,7 +187,7 @@ $grads = ['135deg,#6b0f0f,#8b1a1a','135deg,#4a0808,#c9a84c','135deg,#8b1a1a,#c94
             <button data-modal-close style="background:none;border:none;cursor:pointer;font-size:1.3rem">✕</button>
         </div>
         <form method="POST">
-<?= csrfField("'admin_form'") ?>
+        <?= csrfField('admin_form') ?>
             <input type="hidden" name="action" value="edit">
             <input type="hidden" name="id" id="editId">
             <div class="form-group"><label>Package Name *</label><input type="text" name="name" id="editName" required></div>
@@ -219,6 +222,7 @@ $grads = ['135deg,#6b0f0f,#8b1a1a','135deg,#4a0808,#c9a84c','135deg,#8b1a1a,#c94
         </div>
 
         <form method="POST" enctype="multipart/form-data">
+        <?= csrfField('admin_form') ?>
             <input type="hidden" name="action" value="edit">
             <input type="hidden" name="id" id="editImgId">
             <input type="hidden" name="name"           id="eIN">
@@ -256,6 +260,7 @@ $grads = ['135deg,#6b0f0f,#8b1a1a','135deg,#4a0808,#c9a84c','135deg,#8b1a1a,#c94
         </form>
 
         <form method="POST" id="rm-img-form" style="margin-top:10px">
+        <?= csrfField('admin_form') ?>
             <input type="hidden" name="action" value="remove_image">
             <input type="hidden" name="id" id="rmImgId">
             <button type="button" style="width:100%;padding:10px;background:#fef2f2;color:#ef4444;border:1px solid rgba(239,68,68,.3);border-radius:var(--r-xl);font-size:.85rem;font-weight:600;cursor:pointer;font-family:inherit"

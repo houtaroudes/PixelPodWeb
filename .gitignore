@@ -15,3 +15,9 @@ Thumbs.db
 
 # Ignore database files
 database/pixelpod_db.sql
+# The browser-only booth
+booth/node_modules/
+booth/dist/
+
+# The generated static snapshot of the public pages (tools/export-static.mjs)
+site-preview/

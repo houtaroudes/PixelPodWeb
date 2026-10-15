@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PixelPod Photobooth</title>
+    <meta name="description"
+        content="A photobooth in your browser: three or four shots, six looks, and one strip to download or share." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/src/styles/base.css" />
+    <link rel="stylesheet" href="/src/styles/booth.css" />
+</head>
+
+<body>
+    <!--
+      The icons, drawn once here rather than typed as characters. An emoji is a
+      picture the visitor's own operating system supplies, so the same page
+      shows a different booth on every machine, in colours this page never uses,
+      and it cannot hold a stroke weight. These are 24px line drawings on
+      currentColor: one stroke weight, one set of corners, and each takes the
+      colour of the label it sits beside.
+
+      Five drawings, and why each one is here:
+
+        strip   the finished sheet: three frames, the rule, the band below it.
+                It is a diagram of the file this booth makes, drawn in the same
+                hairline the composite strokes around a shot, because the two
+                layouts are the first decision a visitor makes.
+        grid    the same four frames in their 2x2 arrangement, with no sheet
+                around them, so the two cards differ at a glance and not only by
+                the words under them.
+        camera  the control opens the camera, and the hint below says the same
+                thing in words.
+        save    an arrow into a tray: the strip leaves as one file on this
+                device, which is also what the copy next to it promises.
+        share   an arrow out of a tray: the file goes to the system share sheet,
+                and this button is only in the page when the browser says it can
+                take one.
+
+      Nothing else on the page carries an icon. A drawing next to a heading or a
+      label that already says the word is decoration, and there is none here.
+    -->
+    <svg class="pb-icons" aria-hidden="true" focusable="false">
+        <symbol id="pb-icon-strip" viewBox="0 0 24 24">
+            <rect x="6.5" y="1.5" width="11" height="21" rx="1.5" />
+            <path d="M6.5 6.95h11M6.5 12.55h11" />
+            <path d="M6.5 18.9h11" opacity=".55" />
+        </symbol>
+        <symbol id="pb-icon-grid" viewBox="0 0 24 24">
+            <rect x="2.5" y="4" width="8.6" height="6.45" rx="1.2" />
+            <rect x="12.9" y="4" width="8.6" height="6.45" rx="1.2" />
+            <rect x="2.5" y="13.55" width="8.6" height="6.45" rx="1.2" />
+            <rect x="12.9" y="13.55" width="8.6" height="6.45" rx="1.2" />
+        </symbol>
+        <symbol id="pb-icon-camera" viewBox="0 0 24 24">
+            <path
+                d="M3 8.5h3.2l1.6-2.7h8.4l1.6 2.7H21a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V9.5a1 1 0 0 1 1-1Z" />
+            <circle cx="12" cy="13.5" r="3.6" />
+        </symbol>
+        <symbol id="pb-icon-download" viewBox="0 0 24 24">
+            <path d="M12 3v12m0 0 4.2-4.2M12 15l-4.2-4.2" />
+            <path d="M4 19.5h16" />
+        </symbol>
+        <symbol id="pb-icon-share" viewBox="0 0 24 24">
+            <path d="M12 15V3m0 0L7.8 7.2M12 3l4.2 4.2" />
+            <path d="M5 13.5V19a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5.5" />
+        </symbol>
+    </svg>
+
+    <!-- Hero. A <header> rather than a <div>, and the screens below sit in a
+         <main>, so the page has the landmarks a screen reader jumps between. -->
+    <header class="pb-hero">
+        <div style="max-width:600px;margin:0 auto;padding:0 24px">
+            <div
+                style="font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:12px">
+                PixelPod Virtual Booth</div>
+            <h1>Strike a Pose, <em>Capture the Moment</em></h1>
+            <p>Take fun photobooth pictures right here in your browser, no app needed. Sit through the countdown and
+                leave with one finished strip, ready to save or share.</p>
+        </div>
+    </header>
+
+    <main style="background:var(--bg);min-height:70vh">
+
+        <!-- SCREEN 1: SETUP -->
+        <div id="screenSetup" class="pb-setup">
+            <h2>Choose Your Style</h2>
+
+            <!-- Layout choice -->
+            <div
+                style="margin-bottom:10px;font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mid)">
+                Layout</div>
+            <div class="layout-choices" role="group" aria-label="Layout">
+                <button type="button" class="layout-choice active" data-layout="strip" aria-pressed="true">
+                    <svg class="icon" aria-hidden="true" focusable="false">
+                        <use href="#pb-icon-strip" />
+                    </svg>
+                    <span class="choice-title">Photo Strip</span>
+                    <span class="choice-desc">Classic vertical strip, the timeless photobooth look</span>
+                    <span class="shots-badge">3 shots</span>
+                </button>
+                <button type="button" class="layout-choice" data-layout="grid" aria-pressed="false">
+                    <svg class="icon" aria-hidden="true" focusable="false">
+                        <use href="#pb-icon-grid" />
+                    </svg>
+                    <span class="choice-title">Photo Grid</span>
+                    <span class="choice-desc">Fun 2&times;2 grid, great for groups and parties!</span>
+                    <span class="shots-badge">4 shots</span>
+                </button>
+            </div>
+
+            <!-- Filter choice: the same six looks, no longer read from a database -->
+            <div
+                style="margin-bottom:12px;font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mid)">
+                Filter</div>
+            <div class="filter-row" role="group" aria-label="Filter" id="filterRow">
+                <!-- The pills are built by main.js from src/filters.js -->
+            </div>
+
+            <button class="btn-primary" id="startBtn"
+                style="width:100%;padding:16px;font-size:1.05rem;border:none;cursor:pointer;justify-content:center">
+                <svg class="icon" aria-hidden="true" focusable="false">
+                    <use href="#pb-icon-camera" />
+                </svg>
+                Start Photobooth &rarr;
+            </button>
+            <p style="text-align:center;font-size:.8rem;color:var(--text-light);margin-top:12px">
+                Your browser will ask for camera permission, click <strong>Allow</strong>
+            </p>
+
+            <!--
+              The error state. The PHP page announced a refused camera with an
+              alert() and then left the visitor on a screen that said nothing at
+              all, next to a button that had appeared to do nothing. This says
+              the same thing in the page, and stays until a start attempt works.
+            -->
+            <div class="pb-error" id="cameraError" role="alert" hidden>
+                <strong>Your camera did not open.</strong>
+                <span id="cameraErrorDetail"></span>
+                <span>Allow camera access for this page, then start the booth again.</span>
+            </div>
+        </div>
+
+        <!-- SCREEN 2: CAMERA -->
+        <div id="screenCamera" class="pb-camera-wrap">
+            <div class="pb-camera-inner">
+
+                <!-- Video feed -->
+                <div>
+                    <div class="video-container" id="videoContainer">
+                        <video id="pbVideo" autoplay playsinline muted></video>
+                        <div class="countdown-overlay" id="countdownOverlay">
+                            <div class="countdown-num" id="countdownNum">3</div>
+                        </div>
+                        <div class="flash-anim" id="flashAnim"></div>
+                    </div>
+                    <p style="text-align:center;font-size:.78rem;color:var(--text-light);margin-top:10px">
+                        Camera is mirrored so it feels natural, your photo will be correct
+                    </p>
+                </div>
+
+                <!-- Controls + progress -->
+                <div>
+                    <!-- Shot progress -->
+                    <div class="shot-progress">
+                        <h4>Shots Progress</h4>
+                        <div class="shot-dots" id="shotDots"></div>
+                        <div style="font-size:.78rem;color:var(--text-light);margin-top:10px" id="shotStatus">
+                            Ready for shot 1!
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="cam-controls">
+                        <button class="btn-capture" id="captureBtn">
+                            <svg class="icon" aria-hidden="true" focusable="false">
+                                <use href="#pb-icon-camera" />
+                            </svg>
+                            Take Photo
+                        </button>
+                        <div
+                            style="background:rgba(107,15,15,.06);border-radius:10px;padding:12px;font-size:.78rem;color:var(--text-mid);text-align:center">
+                            <strong id="layoutLabel">Strip &middot; 3 shots</strong><br>
+                            <span id="filterLabel" style="color:var(--text-light)">Filter: Natural</span>
+                        </div>
+                        <button class="btn-restart" id="restartBtn">
+                            &larr; Change Style
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hidden canvas for capturing -->
+            <canvas id="pbCanvas" style="display:none"></canvas>
+        </div>
+
+        <!-- SCREEN 3: LOADING -->
+        <div id="screenLoading" class="pb-loading">
+            <div class="spinner"></div>
+            <div
+                style="font-family:var(--font-display);font-size:1.5rem;color:var(--maroon-deep);margin-bottom:8px">
+                Developing your photos...</div>
+            <div style="color:var(--text-light);font-size:.9rem">Putting your strip together</div>
+        </div>
+
+        <!-- SCREEN 4: RESULT -->
+        <div id="screenResult" class="pb-result-wrap">
+            <h2
+                style="font-family:var(--font-display);font-size:2.2rem;color:var(--maroon-deep);margin-bottom:8px">
+                Your Photos are Ready!</h2>
+            <p style="color:var(--text-mid);margin-bottom:32px">Download it, or send it straight on from here.</p>
+
+            <div class="result-grid">
+                <!-- The finished strip, exactly as it will be saved -->
+                <div>
+                    <div style="font-weight:700;color:var(--maroon-deep);margin-bottom:12px;font-size:.9rem">
+                        Your Photos</div>
+                    <img id="photoPreview" alt="Your finished photobooth strip"
+                        style="width:100%;display:block;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.15)" />
+                </div>
+
+                <!-- Save and share -->
+                <div>
+                    <div style="font-weight:700;color:var(--maroon-deep);margin-bottom:12px;font-size:.9rem">
+                        Save it</div>
+                    <p style="font-size:.82rem;color:var(--text-light);margin-bottom:16px">
+                        One PNG file, put together on your own device. Nothing is uploaded anywhere.
+                    </p>
+                    <div class="result-actions">
+                        <a id="downloadBtn" href="#" download class="btn-primary"
+                            style="justify-content:center;text-decoration:none;padding:12px">
+                            <svg class="icon" aria-hidden="true" focusable="false">
+                                <use href="#pb-icon-download" />
+                            </svg>
+                            Download Strip
+                        </a>
+                        <button id="shareBtn" class="btn-restart" hidden>
+                            <svg class="icon" aria-hidden="true" focusable="false">
+                                <use href="#pb-icon-share" />
+                            </svg>
+                            Share
+                        </button>
+                        <button id="takeAnotherBtn" class="btn-restart">
+                            <svg class="icon" aria-hidden="true" focusable="false">
+                                <use href="#pb-icon-camera" />
+                            </svg>
+                            Take Another
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main><!-- end main -->
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

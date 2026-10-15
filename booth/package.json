@@ -1,0 +1,17 @@
+{
+  "name": "pixelpod-booth",
+  "private": true,
+  "version": "0.1.0",
+  "description": "The PixelPod photobooth, browser only: pick a layout and a look, sit through the countdown, and leave with one strip.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^8.3.2"
+  }
+}

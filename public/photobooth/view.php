@@ -167,7 +167,7 @@ $photos = $session ? json_decode($session['photos'], true) : [];
                 This QR code may be invalid or expired.<br>
                 Code: <strong><?= htmlspecialchars($code ?: 'none') ?></strong>
             </p>
-            <a href="http://localhost/PixelPodWeb/public/photobooth/index.php" class="btn-dl">
+            <a href="/public/photobooth/index.php" class="btn-dl">
                 &#128248; Take New Photos
             </a>
 
@@ -178,14 +178,14 @@ $photos = $session ? json_decode($session['photos'], true) : [];
             <?php if ($session['layout'] === 'strip'): ?>
                 <div class="strip-wrap">
                     <?php foreach ($photos as $f): ?>
-                        <img src="http://localhost/PixelPodWeb/uploads/photos/<?= htmlspecialchars($f) ?>"
+                        <img src="/uploads/photos/<?= htmlspecialchars($f) ?>"
                             alt="Photo" loading="lazy">
                     <?php endforeach; ?>
                 </div>
             <?php else: ?>
                 <div class="grid-wrap">
                     <?php foreach ($photos as $f): ?>
-                        <img src="http://localhost/PixelPodWeb/uploads/photos/<?= htmlspecialchars($f) ?>"
+                        <img src="/uploads/photos/<?= htmlspecialchars($f) ?>"
                             alt="Photo" loading="lazy">
                     <?php endforeach; ?>
                 </div>
@@ -193,13 +193,13 @@ $photos = $session ? json_decode($session['photos'], true) : [];
 
             <!-- Download each photo -->
             <?php foreach ($photos as $i => $f): ?>
-                <a href="http://localhost/PixelPodWeb/uploads/photos/<?= htmlspecialchars($f) ?>"
+                <a href="/uploads/photos/<?= htmlspecialchars($f) ?>"
                     download="pixelpod_photo_<?= $i + 1 ?>.png" class="btn-dl" style="margin-bottom:8px">
                     &#128229; Download Photo <?= $i + 1 ?>
                 </a>
             <?php endforeach; ?>
 
-            <a href="http://localhost/PixelPodWeb/public/photobooth/index.php" class="btn-ghost">
+            <a href="/public/photobooth/index.php" class="btn-ghost">
                 &#128248; Take New Photos
             </a>
 

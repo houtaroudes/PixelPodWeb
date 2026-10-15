@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../includes/auth.php';
-require_once __DIR__ . "'/../../includes/csrf.php'";
-require_once __DIR__ . "'/../../includes/security.php'";
+require_once __DIR__ . '/../../includes/csrf.php';
+require_once __DIR__ . '/../../includes/security.php';
 requireAdmin();
 $pageTitle  = $pageTitle  ?? 'Dashboard';
 $activePage = $activePage ?? 'dashboard';
@@ -47,6 +47,10 @@ $ini = strtoupper(substr($u['first_name'], 0, 1) . substr($u['last_name'], 0, 1)
   </style>
   <script>
     window.SITE_URL = '<?= SITE_URL ?>';
+    /* Tokens for the JS callers. The admin forms carry their own hidden field;
+       the booking-status POST builds its body in admin.js instead. */
+    window.CSRF_TOKEN = '<?= generateCsrfToken('admin_form') ?>';
+    window.CSRF_TOKEN_BOOKING = '<?= generateCsrfToken('api_booking') ?>';
   </script>
   <?= $extraHead ?? '' ?>
 </head>

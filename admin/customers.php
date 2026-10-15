@@ -7,7 +7,7 @@ $pdo = getDB();
 $msg = '';
 
 if ($_SERVER['REQUEST_METHOD']==='POST' && ($_POST['action']??'')==='delete') {
-    requireCsrfToken("admin_form");
+    requireCsrfToken('admin_form');
     $pdo->prepare("DELETE FROM users WHERE id=? AND role='customer'")->execute([(int)$_POST['user_id']]);
     $msg = 'Customer removed.';
 }
@@ -89,6 +89,7 @@ $customers = $stmt->fetchAll();
                         <div style="display:flex;gap:6px">
                             <a href="<?= SITE_URL ?>/admin/bookings.php?q=<?= urlencode($c['username']) ?>" class="action-btn view" title="View bookings">&#128203;</a>
                             <form method="POST" id="del-c-<?= $c['id'] ?>" style="display:inline">
+                            <?= csrfField('admin_form') ?>
                                 <input type="hidden" name="action"  value="delete">
                                 <input type="hidden" name="user_id" value="<?= $c['id'] ?>">
                                 <button type="button" class="action-btn delete" title="Delete"

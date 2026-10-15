@@ -391,7 +391,7 @@ $categories = $pdo->query("SELECT DISTINCT category FROM designs WHERE is_active
         <div class="section-tag-sm">Customize Your Experience</div>
         <h1>Make It <em>Yours</em></h1>
         <p>Browse our layouts, filters, and designs — then book your perfect PixelPod experience!</p>
-        <a href="http://localhost/PixelPodWeb/public/booking.php" class="btn-primary" style="font-size:1rem;padding:14px 36px">
+        <a href="/public/booking.php" class="btn-primary" style="font-size:1rem;padding:14px 36px">
             Book Now →
         </a>
     </div>
@@ -518,7 +518,7 @@ $categories = $pdo->query("SELECT DISTINCT category FROM designs WHERE is_active
             <button onclick="resetAll()" style="background:none;border:2px solid var(--border);padding:10px 20px;border-radius:8px;cursor:pointer;font-size:.85rem;color:var(--text-mid)">
                 Reset All
             </button>
-            <a href="http://localhost/PixelPodWeb/public/booking.php" id="bookBtn" class="btn-primary">
+            <a href="/public/booking.php" id="bookBtn" class="btn-primary">
                 Book with These Choices →
             </a>
         </div>
@@ -646,7 +646,7 @@ function renderCarousel(string $id, array $items, string $type): void
         if (state.design) params.set('design', state.design.id);
         if (addonTotal > 0) params.set('addon', addonTotal);
         document.getElementById('bookBtn').href =
-            'http://localhost/PixelPodWeb/public/booking.php?' + params.toString();
+            '/public/booking.php?' + params.toString();
     }
 
     // Reset all

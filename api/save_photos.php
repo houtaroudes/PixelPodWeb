@@ -2,11 +2,15 @@
 header('Content-Type: application/json');
 if (session_status() === PHP_SESSION_NONE) session_start();
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../includes/csrf.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    requireCsrfToken("'api_photos'");
     echo json_encode(['success'=>false,'message'=>'Invalid request.']); exit;
 }
+
+// Until now the token check sat inside the "not a POST" branch above, so the
+// one request that writes files and rows was the one request that skipped it.
+requireCsrfToken('api_photos');
 
 $body    = json_decode(file_get_contents('php://input'), true);
 $photos  = $body['photos']      ?? [];
@@ -38,8 +42,10 @@ if (empty($savedFiles)) {
     echo json_encode(['success'=>false,'message'=>'Failed to save photos.']); exit;
 }
 
-// Generate QR code via free API
-$viewUrl    = 'http://localhost/PixelPodWeb/public/photobooth/view.php?code=' . $code;
+// Generate QR code via free API. The QR has to carry an absolute URL, since a
+// phone scans it from outside the browser that took the photos, so this is the
+// one link that cannot be root relative.
+$viewUrl    = SITE_URL . '/public/photobooth/view.php?code=' . $code;
 $qrApiUrl   = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' . urlencode($viewUrl);
 $qrFilename = $code . '_qr.png';
 $qrData     = @file_get_contents($qrApiUrl);
@@ -55,8 +61,8 @@ try {
         'success'      => true,
         'session_code' => $code,
         'view_url'     => $viewUrl,
-        'qr_url'       => 'http://localhost/PixelPodWeb/uploads/photos/' . $qrFilename,
-        'photos'       => array_map(fn($f)=>'http://localhost/PixelPodWeb/uploads/photos/'.$f, $savedFiles)
+        'qr_url'       => '/uploads/photos/' . $qrFilename,
+        'photos'       => array_map(fn($f)=>'/uploads/photos/'.$f, $savedFiles)
     ]);
 } catch (Exception $e) {
     echo json_encode(['success'=>false,'message'=>'DB error: '.$e->getMessage()]);

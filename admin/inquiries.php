@@ -8,7 +8,7 @@ $msg = '';
 
 if ($_SERVER['REQUEST_METHOD']==='POST') {
     $action = $_POST["action"] ?? "";
-    requireCsrfToken("admin_form");
+    requireCsrfToken('admin_form');
     $action = $_POST['action'] ?? '';
     $iid    = (int)($_POST['inquiry_id'] ?? 0);
     if ($action==='mark_read'&&$iid)     { $pdo->prepare("UPDATE inquiries SET is_read=1 WHERE id=?")->execute([$iid]); $msg='Marked as read.'; }
@@ -33,7 +33,8 @@ $unreadCount= $pdo->query("SELECT COUNT(*) FROM inquiries WHERE is_read=0")->fet
         <div class="admin-page-sub"><?= count($inquiries) ?> total · <?= $unreadCount ?> unread</div>
     </div>
     <form method="POST">
-<?= csrfField("'admin_form'") ?><input type="hidden" name="action" value="mark_all_read">
+    <?= csrfField('admin_form') ?>
+<input type="hidden" name="action" value="mark_all_read">
         <button type="submit" class="btn-cancel" style="padding:9px 20px">&#9989; Mark All Read</button>
     </form>
 </div>
@@ -76,10 +77,12 @@ $unreadCount= $pdo->query("SELECT COUNT(*) FROM inquiries WHERE is_read=0")->fet
                 <div style="display:flex;gap:8px;flex-wrap:wrap">
                     <a href="mailto:<?= htmlspecialchars($inq['email']) ?>?subject=Re: <?= urlencode($inq['subject']??'Your Inquiry') ?>" class="btn-save" style="padding:7px 16px;font-size:.8rem;display:inline-block">📧 Reply</a>
                     <?php if(!$inq['is_read']): ?>
-                    <form method="POST" style="display:inline"><input type="hidden" name="action" value="mark_read"><input type="hidden" name="inquiry_id" value="<?= $inq['id'] ?>">
+                    <form method="POST" style="display:inline">
+                    <?= csrfField('admin_form') ?><input type="hidden" name="action" value="mark_read"><input type="hidden" name="inquiry_id" value="<?= $inq['id'] ?>">
                         <button type="submit" class="btn-cancel" style="padding:7px 14px;font-size:.8rem">✅ Mark Read</button></form>
                     <?php endif; ?>
                     <form method="POST" id="del-inq-<?= $inq['id'] ?>" style="display:inline"><input type="hidden" name="action" value="delete"><input type="hidden" name="inquiry_id" value="<?= $inq['id'] ?>">
+                    <?= csrfField('admin_form') ?>
                         <button type="button" class="btn-danger" style="padding:7px 14px;font-size:.8rem" onclick="confirmDelete('del-inq-<?= $inq['id'] ?>')">🗑 Delete</button></form>
                 </div>
             </div>

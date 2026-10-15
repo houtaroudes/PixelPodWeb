@@ -9,7 +9,7 @@ $msg = $err = '';
 // Handle account actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
-    requireCsrfToken("admin_form");
+    requireCsrfToken('admin_form');
 
     // CREATE new user (admin or customer)
     if ($action === 'create_user') {
@@ -130,12 +130,14 @@ $customers = $pdo->query("SELECT * FROM users WHERE role='customer' ORDER BY cre
                         <?php if ($u['id'] != $_SESSION['user_id']): ?>
                         <!-- Toggle role -->
                         <form method="POST" style="display:inline">
+                        <?= csrfField('admin_form') ?>
                             <input type="hidden" name="action"  value="toggle_role">
                             <input type="hidden" name="user_id" value="<?= $u['id'] ?>">
                             <button type="submit" class="action-btn view" title="Make Customer" onclick="return confirm('Change this account to Customer?')">&#128100;</button>
                         </form>
                         <!-- Delete -->
                         <form method="POST" style="display:inline" id="del-u-<?= $u['id'] ?>">
+                        <?= csrfField('admin_form') ?>
                             <input type="hidden" name="action"  value="delete_user">
                             <input type="hidden" name="user_id" value="<?= $u['id'] ?>">
                             <button type="button" class="action-btn delete" title="Delete"
@@ -181,11 +183,13 @@ $customers = $pdo->query("SELECT * FROM users WHERE role='customer' ORDER BY cre
                             onclick="openResetModal(<?= $u['id'] ?>, '<?= htmlspecialchars($u['username']) ?>')">&#128273;</button>
                         <!-- Make admin -->
                         <form method="POST" style="display:inline">
+                        <?= csrfField('admin_form') ?>
                             <input type="hidden" name="action"  value="toggle_role">
                             <input type="hidden" name="user_id" value="<?= $u['id'] ?>">
                             <button type="submit" class="action-btn approve" title="Make Admin" onclick="return confirm('Promote this account to Admin?')">&#9733;</button>
                         </form>
                         <form method="POST" style="display:inline" id="del-u-<?= $u['id'] ?>">
+                        <?= csrfField('admin_form') ?>
                             <input type="hidden" name="action"  value="delete_user">
                             <input type="hidden" name="user_id" value="<?= $u['id'] ?>">
                             <button type="button" class="action-btn delete" title="Delete"
@@ -210,7 +214,7 @@ $customers = $pdo->query("SELECT * FROM users WHERE role='customer' ORDER BY cre
             <button data-modal-close style="background:none;border:none;cursor:pointer;font-size:1.3rem">✕</button>
         </div>
         <form method="POST">
-<?= csrfField("'admin_form'") ?>
+        <?= csrfField('admin_form') ?>
             <input type="hidden" name="action" value="create_user">
             <div class="form-group">
                 <label>Role *</label>
@@ -266,7 +270,7 @@ $customers = $pdo->query("SELECT * FROM users WHERE role='customer' ORDER BY cre
         </div>
         <div id="resetLabel" style="font-size:.88rem;color:var(--text-mid);margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--border)"></div>
         <form method="POST">
-<?= csrfField("'admin_form'") ?>
+        <?= csrfField('admin_form') ?>
             <input type="hidden" name="action"  value="reset_password">
             <input type="hidden" name="user_id" id="resetUserId">
             <div class="form-group">

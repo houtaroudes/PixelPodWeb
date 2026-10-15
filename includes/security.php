@@ -4,7 +4,9 @@ function sendSecurityHeaders(): void {
     header('X-Frame-Options: DENY');
     header('X-XSS-Protection: 1; mode=block');
     header('Referrer-Policy: strict-origin-when-cross-origin');
-    header("Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()");
+    /* camera=(self), not camera=(): the photobooth on this site opens the camera
+       through getUserMedia, and the old policy blocked it on every page. */
+    header("Permissions-Policy: camera=(self), microphone=(), geolocation=(), payment=()");
     $csp = [
         "default-src 'self'",
         "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://code.jquery.com",
@@ -21,10 +23,16 @@ function sendSecurityHeaders(): void {
         header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
 }
 function hardenSession(): void {
-    ini_set('session.cookie_httponly', 1);
-    ini_set('session.cookie_samesite', 'Lax');
-    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
-        ini_set('session.cookie_secure', 1);
+    /* The cookie flags have to be set before the session starts, and auth.php
+       already sets them there. Setting them a second time once the session is
+       live changed nothing and printed a PHP warning on every page, so they are
+       set only when this runs first. */
+    if (session_status() === PHP_SESSION_NONE) {
+        ini_set('session.cookie_httponly', 1);
+        ini_set('session.cookie_samesite', 'Lax');
+        if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+            ini_set('session.cookie_secure', 1);
+    }
     if (!isset($_SESSION['_last_regenerated']))
         $_SESSION['_last_regenerated'] = time();
     elseif (time() - $_SESSION['_last_regenerated'] > 1800) {

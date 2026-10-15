@@ -1,0 +1,96 @@
+/*
+ * The parts of public/css/style.css the booth actually uses: the tokens, the
+ * resets, and the one button class. The site's nav, footer, cards, sections and
+ * admin rules are deliberately absent, because there are no such pages here.
+ *
+ * Note the three tokens that are used further down and are not defined here:
+ * --border, --bg and --maroon-dark. They are not defined in the original
+ * stylesheet either, which is why the booth renders without the border its
+ * rules describe. See section 13 of the design spec before adding them.
+ */
+
+:root {
+  --maroon: #6b0f0f;
+  --maroon-deep: #4a0808;
+  --maroon-light: #8b1a1a;
+  --gold: #c9a84c;
+  --gold-light: #e8c97a;
+  --cream: #fdf8f3;
+  --cream-dark: #f5ede0;
+  --white: #ffffff;
+  --text-dark: #1a0a0a;
+  --text-mid: #5a3a3a;
+  /* Was #9a7575, which measures 3.84:1 against the cream paper and so fails
+     WCAG AA for the small print it is used on (axe reports it on the result
+     screen's note). This is #856060, measured at 5.12:1 on --cream. The site's
+     own stylesheet still carries the old value, so the same one line belongs
+     there too, exactly like the three tokens noted above. */
+  --text-light: #856060;
+  --shadow-sm: 0 2px 12px rgba(107, 15, 15, 0.1);
+  --shadow-md: 0 8px 32px rgba(107, 15, 15, 0.16);
+  --shadow-lg: 0 20px 60px rgba(107, 15, 15, 0.2);
+  --r-sm: 8px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 40px;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --ease: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--text-dark);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ul {
+  list-style: none;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--maroon);
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: var(--r-xl);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: var(--ease);
+  box-shadow: 0 4px 20px rgba(107, 15, 15, 0.3);
+}
+.btn-primary:hover {
+  background: var(--maroon-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(107, 15, 15, 0.4);
+}

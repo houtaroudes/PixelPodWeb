@@ -833,7 +833,7 @@ $filters = $pdo->query("SELECT * FROM filters WHERE is_active=1 ORDER BY sort_or
         }
 
         try {
-            const res = await fetch('http://localhost/PixelPodWeb/api/save_photos.php', {
+            const res = await fetch('/api/save_photos.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -841,7 +841,8 @@ $filters = $pdo->query("SELECT * FROM filters WHERE is_active=1 ORDER BY sort_or
                 body: JSON.stringify({
                     photos: capturedPhotos,
                     layout: selectedLayout,
-                    filter_name: selectedFilter
+                    filter_name: selectedFilter,
+                    csrf_token: '<?= generateCsrfToken('api_photos') ?>'
                 })
             });
             const data = await res.json();

@@ -75,7 +75,7 @@ function initServiceDonut() {
 function updateBookingStatus(id, status) {
     if (!confirm(`${status.charAt(0).toUpperCase()+status.slice(1)} this booking?`)) return;
     fetch('../api/booking_status.php', {
-        method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'},
+        method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded','X-CSRF-Token': window.CSRF_TOKEN_BOOKING || ''},
         body:`booking_id=${id}&status=${status}`
     }).then(r=>r.json()).then(d => {
         showToast(d.message, d.success ? 'success' : 'error');

@@ -8,7 +8,7 @@ $msg = $err = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
-    requireCsrfToken("admin_form");
+    requireCsrfToken('admin_form');
     $bid    = (int)($_POST['booking_id'] ?? 0);
 
     if ($action === 'update_status' && $bid) {
@@ -143,6 +143,7 @@ $bookings = $stmt->fetchAll();
                                 <?php endif; ?>
                                 <button class="action-btn edit" title="Edit" onclick="openEditModal(<?= htmlspecialchars(json_encode($b), ENT_QUOTES) ?>)">&#9998;</button>
                                 <form method="POST" id="del-<?= $b['id'] ?>" style="display:inline">
+                                <?= csrfField('admin_form') ?>
                                     <input type="hidden" name="action" value="delete">
                                     <input type="hidden" name="booking_id" value="<?= $b['id'] ?>">
                                     <button type="button" class="action-btn delete" title="Delete" onclick="confirmDelete('del-<?= $b['id'] ?>')">&#128465;</button>
@@ -175,7 +176,7 @@ $bookings = $stmt->fetchAll();
             <button data-modal-close style="background:none;border:none;cursor:pointer;font-size:1.3rem">✕</button>
         </div>
         <form method="POST">
-<?= csrfField("'admin_form'") ?>
+        <?= csrfField('admin_form') ?>
             <input type="hidden" name="action" value="update_status">
             <input type="hidden" name="booking_id" id="editId">
             <div class="form-group">

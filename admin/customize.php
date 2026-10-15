@@ -1,5 +1,8 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
+/* Loaded here rather than through includes/header.php, which this page pulls in
+   further down, after the POST handler that checks the token. */
+require_once __DIR__ . '/../includes/csrf.php';
 $pdo = getDB();
 $msg = $err = '';
 
@@ -9,6 +12,7 @@ $tab = in_array($_GET['tab'] ?? '', ['sizes','layouts','filters','designs'])
 
 // Handle POST actions 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    requireCsrfToken('admin_form');
     $action = $_POST['action'] ?? '';
     $type   = $_POST['type']   ?? '';
 
@@ -115,7 +119,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="admin-page-title">Customizations Manager</div>
         <div class="admin-page-sub">Manage photo sizes, layouts, filters &amp; designs</div>
     </div>
-    <a href="http://localhost/PixelPodWeb/public/customize.php" target="_blank" class="btn-save">
+    <a href="/public/customize.php" target="_blank" class="btn-save">
         👁 Preview Public Page
     </a>
 </div>
@@ -197,6 +201,7 @@ require_once __DIR__ . '/includes/header.php';
                                 title="Edit">&#x270E;</button>
                             <!-- Toggle visibility -->
                             <form method="POST" style="display:inline">
+                            <?= csrfField('admin_form') ?>
                                 <input type="hidden" name="action"  value="toggle">
                                 <input type="hidden" name="type"    value="<?= $tab ?>">
                                 <input type="hidden" name="item_id" value="<?= $item['id'] ?>">
@@ -204,6 +209,7 @@ require_once __DIR__ . '/includes/header.php';
                             </form>
                             <!-- Delete -->
                             <form method="POST" style="display:inline" id="del-<?= $tab ?>-<?= $item['id'] ?>">
+                            <?= csrfField('admin_form') ?>
                                 <input type="hidden" name="action"  value="delete">
                                 <input type="hidden" name="type"    value="<?= $tab ?>">
                                 <input type="hidden" name="item_id" value="<?= $item['id'] ?>">
@@ -224,6 +230,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="admin-form-card">
             <div class="admin-form-title">Add New <?= rtrim(ucfirst($tab),'s') ?></div>
             <form method="POST" action="?tab=<?= $tab ?>" class="admin-form">
+            <?= csrfField('admin_form') ?>
                 <input type="hidden" name="action" value="create">
                 <input type="hidden" name="type"   value="<?= $tab ?>">
 
@@ -289,6 +296,7 @@ require_once __DIR__ . '/includes/header.php';
             <button data-modal-close style="background:none;border:none;cursor:pointer;font-size:1.3rem">✕</button>
         </div>
         <form method="POST" action="?tab=<?= $tab ?>" class="admin-form" id="editForm">
+        <?= csrfField('admin_form') ?>
             <input type="hidden" name="action"  value="update">
             <input type="hidden" name="type"    value="<?= $tab ?>">
             <input type="hidden" name="item_id" id="editId">

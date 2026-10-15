@@ -6,7 +6,7 @@ $pdo = getDB();
 
 // Delete session
 if ($_SERVER['REQUEST_METHOD']==='POST' && ($_POST['action']??'')==='delete') {
-    requireCsrfToken("admin_form");
+    requireCsrfToken('admin_form');
     $id = intval($_POST['session_id']??0);
     // Get photos to delete files
     $s = $pdo->prepare("SELECT photos,qr_code FROM photo_sessions WHERE id=?");
@@ -40,7 +40,7 @@ $today  = count(array_filter($sessions, fn($s)=>date('Y-m-d',strtotime($s['creat
         <div class="admin-page-title">Photo Sessions</div>
         <div class="admin-page-sub"><?= $total ?> total sessions · <?= $today ?> today</div>
     </div>
-    <a href="http://localhost/PixelPodWeb/public/photobooth/index.php" target="_blank" class="btn-save">
+    <a href="/public/photobooth/index.php" target="_blank" class="btn-save">
          Open Photobooth
     </a>
 </div>
@@ -76,7 +76,7 @@ $today  = count(array_filter($sessions, fn($s)=>date('Y-m-d',strtotime($s['creat
                 <td>
                     <div style="display:flex;gap:4px">
                         <?php foreach (array_slice($photos,0,2) as $f): ?>
-                        <img src="http://localhost/PixelPodWeb/uploads/photos/<?= htmlspecialchars($f) ?>"
+                        <img src="/uploads/photos/<?= htmlspecialchars($f) ?>"
                              style="width:36px;height:36px;object-fit:cover;border-radius:4px;border:1px solid var(--border)"
                              onerror="this.style.display='none'">
                         <?php endforeach; ?>
@@ -89,7 +89,7 @@ $today  = count(array_filter($sessions, fn($s)=>date('Y-m-d',strtotime($s['creat
                 </td>
                 <td>
                     <?php if ($s['qr_code']): ?>
-                    <img src="http://localhost/PixelPodWeb/uploads/photos/<?= htmlspecialchars($s['qr_code']) ?>"
+                    <img src="/uploads/photos/<?= htmlspecialchars($s['qr_code']) ?>"
                          style="width:40px;height:40px;border-radius:4px;border:1px solid var(--border)"
                          onerror="this.style.display='none'">
                     <?php else: ?>
@@ -108,9 +108,10 @@ $today  = count(array_filter($sessions, fn($s)=>date('Y-m-d',strtotime($s['creat
                 <td style="font-size:.82rem;color:var(--text-mid)"><?= date('M d, Y g:i A',strtotime($s['created_at'])) ?></td>
                 <td>
                     <div style="display:flex;gap:6px">
-                        <a href="http://localhost/PixelPodWeb/public/photobooth/view.php?code=<?= urlencode($s['session_code']) ?>"
+                        <a href="/public/photobooth/view.php?code=<?= urlencode($s['session_code']) ?>"
                            target="_blank" class="action-btn view" title="View photos">👁</a>
                         <form method="POST" id="del-ps-<?= $s['id'] ?>" style="display:inline">
+                        <?= csrfField('admin_form') ?>
                             <input type="hidden" name="action"     value="delete">
                             <input type="hidden" name="session_id" value="<?= $s['id'] ?>">
                             <button type="button" class="action-btn delete" title="Delete"

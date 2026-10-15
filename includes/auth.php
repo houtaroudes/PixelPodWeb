@@ -27,7 +27,7 @@ function generateRef(): string {
     return 'PPB-' . $year . '-' . str_pad($count + 1, 4, '0', STR_PAD_LEFT);
 }
 function loginUser(string $username, string $password, string $csrfToken = ''): array {
-    if (!empty($csrfToken) && !validateCsrfToken('login', $csrfToken))
+    if (!validateCsrfToken('login', $csrfToken))
         return ['success' => false, 'message' => 'Invalid security token. Please refresh and try again.'];
     if (!checkRateLimit(5, 900, 'login_' . md5($_SERVER['REMOTE_ADDR'] ?? '')))
         return ['success' => false, 'message' => 'Too many login attempts. Please try again in 15 minutes.'];
@@ -46,7 +46,7 @@ function loginUser(string $username, string $password, string $csrfToken = ''): 
     return ['success' => true, 'message' => 'Login successful.', 'role' => $user['role']];
 }
 function registerUser(array $data, string $csrfToken = ''): array {
-    if (!empty($csrfToken) && !validateCsrfToken('register', $csrfToken))
+    if (!validateCsrfToken('register', $csrfToken))
         return ['success' => false, 'message' => 'Invalid security token. Please refresh and try again.'];
     if (!checkRateLimit(3, 3600, 'register_' . md5($_SERVER['REMOTE_ADDR'] ?? '')))
         return ['success' => false, 'message' => 'Too many registration attempts. Please try again later.'];
