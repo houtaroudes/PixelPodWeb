@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customize Your Booth | Pixel Pod Photobooth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-text">Pixel <em>Pod</em></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html"    >Home</a></li>
+      <li><a href="services.html" >Services</a></li>
+      <li><a href="contact.html"  >Book Now</a></li>
+      <li><a href="customize.html">Customize</a></li>
+      <li><a href="https://pixelpod-booth.vercel.app">Try Booth</a></li>
+      <li><a href="contact.html"  >Contact</a></li>
+    </ul>
+    <div class="nav-actions" id="navActions">
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<style>
+    /* Page Hero */
+    .custom-hero {
+        background: linear-gradient(135deg, var(--maroon-deep) 0%, var(--maroon) 100%);
+        padding: 100px 0 60px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .custom-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at center, rgba(212, 170, 98, .12) 0%, transparent 70%);
+    }
+
+    .custom-hero h1 {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        color: #fff;
+        margin-bottom: 14px;
+        position: relative;
+    }
+
+    .custom-hero h1 em {
+        color: var(--gold-light);
+        font-style: italic;
+    }
+
+    .custom-hero p {
+        color: rgba(255, 255, 255, .7);
+        font-size: 1.05rem;
+        max-width: 560px;
+        margin: 0 auto 32px;
+        position: relative;
+    }
+
+    /* Section */
+    .custom-section {
+        padding: 80px 0;
+        background: var(--bg);
+    }
+
+    .custom-section:nth-child(even) {
+        background: var(--panel);
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .section-header h2 {
+        font-family: var(--font-display);
+        font-size: 2.2rem;
+        color: var(--maroon-deep);
+        margin-bottom: 10px;
+    }
+
+    .section-header h2 em {
+        color: var(--maroon);
+        font-style: italic;
+    }
+
+    .section-header p {
+        color: var(--text-mid);
+        font-size: .95rem;
+    }
+
+    .section-tag-sm {
+        display: inline-block;
+        background: rgba(107, 15, 15, .08);
+        color: var(--maroon);
+        font-size: .72rem;
+        font-weight: 700;
+        letter-spacing: .15em;
+        text-transform: uppercase;
+        padding: 5px 14px;
+        border-radius: 100px;
+        margin-bottom: 12px;
+    }
+
+    /* Carousel */
+    .carousel-wrap {
+        position: relative;
+        overflow: hidden;
+        padding: 10px 0 20px;
+    }
+
+    .carousel-track {
+        display: flex;
+        gap: 24px;
+        transition: transform .4s cubic-bezier(.25, .8, .25, 1);
+        will-change: transform;
+    }
+
+    .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: #fff;
+        border: 2px solid var(--maroon);
+        color: var(--maroon);
+        font-size: 1.2rem;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, .12);
+        transition: all .2s;
+    }
+
+    .carousel-btn:hover {
+        background: var(--maroon);
+        color: #fff;
+    }
+
+    .carousel-btn.prev {
+        left: 0;
+    }
+
+    .carousel-btn.next {
+        right: 0;
+    }
+
+    .carousel-outer {
+        padding: 0 56px;
+    }
+
+    /* Cards */
+    .custom-card {
+        flex: 0 0 260px;
+        background: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, .08);
+        cursor: pointer;
+        transition: transform .3s, box-shadow .3s, border-color .3s;
+        border: 2.5px solid transparent;
+        position: relative;
+    }
+
+    .custom-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 35px rgba(107, 15, 15, .15);
+    }
+
+    .custom-card.selected {
+        border-color: var(--maroon);
+        box-shadow: 0 0 0 4px rgba(107, 15, 15, .12);
+    }
+
+    .custom-card.selected::after {
+        content: '✓';
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 28px;
+        height: 28px;
+        background: var(--maroon);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: .85rem;
+        font-weight: 700;
+    }
+
+    .card-img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+        background: #f3e8e8;
+    }
+
+    .card-img-placeholder {
+        width: 100%;
+        height: 180px;
+        background: linear-gradient(135deg, #f3e8e8, #fdf0f0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+    }
+
+    .card-body {
+        padding: 16px;
+    }
+
+    .card-name {
+        font-weight: 700;
+        font-size: .95rem;
+        color: var(--maroon-deep);
+        margin-bottom: 4px;
+    }
+
+    .card-desc {
+        font-size: .78rem;
+        color: var(--text-light);
+        line-height: 1.5;
+        margin-bottom: 8px;
+    }
+
+    .card-badge {
+        display: inline-block;
+        font-size: .7rem;
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 100px;
+        background: rgba(107, 15, 15, .08);
+        color: var(--maroon);
+    }
+
+    .card-badge.green {
+        background: rgba(34, 197, 94, .1);
+        color: #166534;
+    }
+
+    .card-badge.gold {
+        background: rgba(212, 170, 98, .15);
+        color: #92620a;
+    }
+
+    /* Size card (multi-select) */
+    .size-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+    }
+
+    .size-card {
+        background: #fff;
+        border-radius: 14px;
+        padding: 20px;
+        border: 2.5px solid var(--border);
+        cursor: pointer;
+        transition: all .25s;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        position: relative;
+    }
+
+    .size-card:hover {
+        border-color: var(--maroon);
+        transform: translateY(-3px);
+    }
+
+    .size-card.selected {
+        border-color: var(--maroon);
+        background: rgba(107, 15, 15, .03);
+    }
+
+    .size-card.selected::after {
+        content: '✓';
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 24px;
+        height: 24px;
+        background: var(--maroon);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: .78rem;
+        font-weight: 700;
+    }
+
+    .size-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #fdf0f0, #f8d9d9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        flex-shrink: 0;
+    }
+
+    .size-name {
+        font-weight: 700;
+        font-size: .95rem;
+        color: var(--maroon-deep);
+    }
+
+    .size-dim {
+        font-size: .78rem;
+        color: var(--text-light);
+        margin: 2px 0;
+    }
+
+    .size-price {
+        font-size: .82rem;
+        font-weight: 700;
+        color: var(--maroon);
+    }
+
+    /* Design category tabs */
+    .cat-tabs {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 32px;
+    }
+
+    .cat-tab {
+        padding: 8px 20px;
+        border-radius: 100px;
+        border: 2px solid var(--border);
+        background: #fff;
+        font-size: .82rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all .2s;
+        color: var(--text-mid);
+    }
+
+    .cat-tab:hover,
+    .cat-tab.active {
+        background: var(--maroon);
+        border-color: var(--maroon);
+        color: #fff;
+    }
+
+    /* CTA bar */
+    .cta-bar {
+        position: sticky;
+        bottom: 0;
+        background: #fff;
+        border-top: 2px solid var(--border);
+        padding: 16px 0;
+        z-index: 100;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, .08);
+    }
+
+    .cta-bar-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .cta-summary {
+        font-size: .88rem;
+        color: var(--text-mid);
+    }
+
+    .cta-summary strong {
+        color: var(--maroon-deep);
+    }
+
+    .cta-btns {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+</style>
+
+<!-- Hero -->
+<div class="custom-hero">
+    <div style="position:relative;max-width:700px;margin:0 auto;padding:0 24px">
+        <div class="section-tag-sm">Customize Your Experience</div>
+        <h1>Make It <em>Yours</em></h1>
+        <p>Browse our layouts, filters, and designs — then book your perfect PixelPod experience!</p>
+        <a href="contact.html" class="btn-primary" style="font-size:1rem;padding:14px 36px">
+            Book Now →
+        </a>
+    </div>
+</div>
+
+<div style="max-width:1200px;margin:0 auto;padding:0 24px">
+
+    <!-- SECTION 1: PHOTO SIZES (multi-select grid) -->
+    <div class="custom-section">
+        <div class="section-header">
+            <div class="section-tag-sm">Step 1</div>
+            <h2>Choose Your <em>Photo Size</em></h2>
+            <p>Pick one or more print sizes — mix and match! Add-on prices apply.</p>
+        </div>
+        <div class="size-grid" id="sizeGrid">
+                            <div class="size-card" data-id="1" data-price="0.00"
+                    onclick="toggleSize(this)">
+                    <div class="size-icon">
+                        🎞️                    </div>
+                    <div>
+                        <div class="size-name">2x6 Strip</div>
+                        <div class="size-dim">2</div>
+                        <div class="size-price">
+                            &#9989; Included                        </div>
+                        <div class="size-dim" style="margin-top:4px">Classic long photo strip — 3 shots in a row. The most popular!</div>
+                    </div>
+                </div>
+                            <div class="size-card" data-id="2" data-price="200.00"
+                    onclick="toggleSize(this)">
+                    <div class="size-icon">
+                        &#128444;                    </div>
+                    <div>
+                        <div class="size-name">4x6 Print</div>
+                        <div class="size-dim">4&quot; × 6&quot;</div>
+                        <div class="size-price">
+                            +₱200                        </div>
+                        <div class="size-dim" style="margin-top:4px">Standard postcard-size print. Great for framing.</div>
+                    </div>
+                </div>
+                            <div class="size-card" data-id="3" data-price="300.00"
+                    onclick="toggleSize(this)">
+                    <div class="size-icon">
+                        &#128247;                    </div>
+                    <div>
+                        <div class="size-name">5x7 Print</div>
+                        <div class="size-dim">5&quot; × 7&quot;</div>
+                        <div class="size-price">
+                            +₱300                        </div>
+                        <div class="size-dim" style="margin-top:4px">Medium size — perfect for displaying at home.</div>
+                    </div>
+                </div>
+                            <div class="size-card" data-id="4" data-price="150.00"
+                    onclick="toggleSize(this)">
+                    <div class="size-icon">
+                        &#128179;                    </div>
+                    <div>
+                        <div class="size-name">Wallet Size</div>
+                        <div class="size-dim">2&quot; × 2&quot;</div>
+                        <div class="size-price">
+                            +₱150                        </div>
+                        <div class="size-dim" style="margin-top:4px">Small 2x2 prints — great for giveaways and souvenirs.</div>
+                    </div>
+                </div>
+                            <div class="size-card" data-id="5" data-price="0.00"
+                    onclick="toggleSize(this)">
+                    <div class="size-icon">
+                        &#128241;                    </div>
+                    <div>
+                        <div class="size-name">Digital Only</div>
+                        <div class="size-dim">Digital</div>
+                        <div class="size-price">
+                            &#9989; Included                        </div>
+                        <div class="size-dim" style="margin-top:4px">No physical print — just high-res digital copies via QR code.</div>
+                    </div>
+                </div>
+                    </div>
+    </div>
+
+    <!-- SECTION 2: LAYOUTS (carousel, single-select) -->
+    <div class="custom-section">
+        <div class="section-header">
+            <div class="section-tag-sm">Step 2</div>
+            <h2>Pick a <em>Layout</em></h2>
+            <p>How do you want your photos arranged on the print?</p>
+        </div>
+        <div class="carousel-outer"><div class="carousel-wrap"><button class="carousel-btn prev" onclick="slideCarousel('layoutCarousel', -1)">‹</button><div class="carousel-track" id="layoutCarousel"><div class="custom-card" data-id="1" data-type="layout" onclick="selectCard(this, 'layout')"><img class="card-img" src="https://images.unsplash.com/photo-1609234563539-ad88d66a4b0e?w=400&amp;q=80" alt="Classic Strip" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-img-placeholder" style="display:none">&#128444;</div><div class="card-body"><div class="card-name">Classic Strip</div><div class="card-desc">Three photos stacked vertically — the timeless photobooth look.</div><span class="card-badge green">3 shots</span></div></div><div class="custom-card" data-id="2" data-type="layout" onclick="selectCard(this, 'layout')"><img class="card-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&amp;q=80" alt="Grid 2x2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-img-placeholder" style="display:none">&#128444;</div><div class="card-body"><div class="card-name">Grid 2x2</div><div class="card-desc">Four photos arranged in a neat 2x2 grid. Fun for groups!</div><span class="card-badge green">4 shots</span></div></div><div class="custom-card" data-id="3" data-type="layout" onclick="selectCard(this, 'layout')"><img class="card-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&amp;q=80" alt="Single Shot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-img-placeholder" style="display:none">&#128444;</div><div class="card-body"><div class="card-name">Single Shot</div><div class="card-desc">One large, stunning photo that takes up the whole print.</div><span class="card-badge green">1 shots</span></div></div><div class="custom-card" data-id="4" data-type="layout" onclick="selectCard(this, 'layout')"><img class="card-img" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&amp;q=80" alt="Collage 3+1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-img-placeholder" style="display:none">&#128444;</div><div class="card-body"><div class="card-name">Collage 3+1</div><div class="card-desc">Three small shots on the left, one big shot on the right.</div><span class="card-badge green">4 shots</span></div></div><div class="custom-card" data-id="5" data-type="layout" onclick="selectCard(this, 'layout')"><img class="card-img" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&amp;q=80" alt="Wide Panorama" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-img-placeholder" style="display:none">&#128444;</div><div class="card-body"><div class="card-name">Wide Panorama</div><div class="card-desc">Two wide landscape photos stacked — great for large group shots.</div><span class="card-badge green">2 shots</span></div></div><div class="custom-card" data-id="6" data-type="layout" onclick="selectCard(this, 'layout')"><img class="card-img" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&amp;q=80" alt="Passport Style" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-img-placeholder" style="display:none">&#128444;</div><div class="card-body"><div class="card-name">Passport Style</div><div class="card-desc">Six small passport-sized photos on one print.</div><span class="card-badge green">6 shots</span></div></div></div><button class="carousel-btn next" onclick="slideCarousel('layoutCarousel', 1)">›</button></div></div>    </div>
+
+    <!-- SECTION 3: FILTERS (carousel, single-select) -->
+    <div class="custom-section">
+        <div class="section-header">
+            <div class="section-tag-sm">Step 3</div>
+            <h2>Choose a <em>Filter</em></h2>
+            <p>Set the mood — all filters are included at no extra cost!</p>
+        </div>
+        <div class="carousel-outer"><div class="carousel-wrap"><button class="carousel-btn prev" onclick="slideCarousel('filterCarousel', -1)">‹</button><div class="carousel-track" id="filterCarousel"><div class="custom-card" data-id="1" data-type="filter" onclick="selectCard(this, 'filter')"><img class="card-img" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&amp;q=80" alt="Natural" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-img-placeholder" style="display:none">&#127912;</div><div class="card-body"><div class="card-name">Natural</div><div class="card-desc">No filter — your true colors shine through.</div></div></div><div class="custom-card" data-id="2" data-type="filter" onclick="selectCard(this, 'filter')"><img class="card-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&amp;q=80" alt="Black &amp; White" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-img-placeholder" style="display:none">&#127912;</div><div class="card-body"><div class="card-name">Black &amp; White</div><div class="card-desc">Timeless classic monochrome look.</div></div></div><div class="custom-card" data-id="3" data-type="filter" onclick="selectCard(this, 'filter')"><img class="card-img" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&amp;q=80" alt="Vintage" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-img-placeholder" style="display:none">&#127912;</div><div class="card-body"><div class="card-name">Vintage</div><div class="card-desc">Warm sepia tones with a retro 70s feel.</div></div></div><div class="custom-card" data-id="4" data-type="filter" onclick="selectCard(this, 'filter')"><img class="card-img" src="https://images.unsplash.com/photo-1607434472257-d9f8e57a643d?w=400&amp;q=80" alt="Glam" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-img-placeholder" style="display:none">&#127912;</div><div class="card-body"><div class="card-name">Glam</div><div class="card-desc">Bright, smooth, and flattering — perfect for debut and weddings.</div></div></div><div class="custom-card" data-id="5" data-type="filter" onclick="selectCard(this, 'filter')"><img class="card-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&amp;q=80" alt="Film Grain" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-img-placeholder" style="display:none">&#127912;</div><div class="card-body"><div class="card-name">Film Grain</div><div class="card-desc">Authentic grainy film camera look for an artistic vibe.</div></div></div><div class="custom-card" data-id="6" data-type="filter" onclick="selectCard(this, 'filter')"><img class="card-img" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&amp;q=80" alt="Vivid Pop" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-img-placeholder" style="display:none">&#127912;</div><div class="card-body"><div class="card-name">Vivid Pop</div><div class="card-desc">Boosted colors that make everything look extra bright and fun!</div></div></div></div><button class="carousel-btn next" onclick="slideCarousel('filterCarousel', 1)">›</button></div></div>    </div>
+
+    <!-- SECTION 4: DESIGNS (category tabs + carousel) -->
+    <div class="custom-section">
+        <div class="section-header">
+            <div class="section-tag-sm">Step 4</div>
+            <h2>Pick a Frame <em>Design</em></h2>
+            <p>Choose a border and decoration style that matches your event theme.</p>
+        </div>
+
+        <!-- Category filter tabs -->
+        <div class="cat-tabs">
+            <button class="cat-tab active" onclick="filterDesigns('all', this)">All</button>
+                            <button class="cat-tab" onclick="filterDesigns('general', this)">
+                    General                </button>
+                            <button class="cat-tab" onclick="filterDesigns('wedding', this)">
+                    Wedding                </button>
+                            <button class="cat-tab" onclick="filterDesigns('birthday', this)">
+                    Birthday                </button>
+                            <button class="cat-tab" onclick="filterDesigns('corporate', this)">
+                    Corporate                </button>
+                    </div>
+
+        <div class="carousel-outer" id="designCarouselOuter">
+            <div class="carousel-wrap">
+                <button class="carousel-btn prev" onclick="slideCarousel('designCarousel', -1)">‹</button>
+                <div class="carousel-track" id="designCarousel">
+                                            <div class="custom-card"
+                            data-id="1"
+                            data-type="design"
+                            data-category="general"
+                            onclick="selectCard(this, 'design')">
+                                                            <img class="card-img" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&amp;q=80"
+                                    alt="Minimalist"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                                <div class="card-img-placeholder" style="display:none">&#127912;</div>
+                                                        <div class="card-body">
+                                <div class="card-name">Minimalist</div>
+                                <div class="card-desc">Clean white border — lets your photos do all the talking.</div>
+                                <span class="card-badge">General</span>
+                            </div>
+                        </div>
+                                            <div class="custom-card"
+                            data-id="2"
+                            data-type="design"
+                            data-category="wedding"
+                            onclick="selectCard(this, 'design')">
+                                                            <img class="card-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&amp;q=80"
+                                    alt="Elegant Gold"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                                <div class="card-img-placeholder" style="display:none">&#127912;</div>
+                                                        <div class="card-body">
+                                <div class="card-name">Elegant Gold</div>
+                                <div class="card-desc">Luxurious gold foil-style frame. Perfect for weddings and debuts.</div>
+                                <span class="card-badge">Wedding</span>
+                            </div>
+                        </div>
+                                            <div class="custom-card"
+                            data-id="3"
+                            data-type="design"
+                            data-category="wedding"
+                            onclick="selectCard(this, 'design')">
+                                                            <img class="card-img" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&amp;q=80"
+                                    alt="Floral Bloom"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                                <div class="card-img-placeholder" style="display:none">&#127912;</div>
+                                                        <div class="card-body">
+                                <div class="card-name">Floral Bloom</div>
+                                <div class="card-desc">Soft pastel flowers around the border — romantic and beautiful.</div>
+                                <span class="card-badge">Wedding</span>
+                            </div>
+                        </div>
+                                            <div class="custom-card"
+                            data-id="4"
+                            data-type="design"
+                            data-category="birthday"
+                            onclick="selectCard(this, 'design')">
+                                                            <img class="card-img" src="https://images.unsplash.com/photo-1607434472257-d9f8e57a643d?w=400&amp;q=80"
+                                    alt="Festive Burst"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                                <div class="card-img-placeholder" style="display:none">&#127912;</div>
+                                                        <div class="card-body">
+                                <div class="card-name">Festive Burst</div>
+                                <div class="card-desc">Colorful confetti and balloons — made for birthday parties!</div>
+                                <span class="card-badge">Birthday</span>
+                            </div>
+                        </div>
+                                            <div class="custom-card"
+                            data-id="5"
+                            data-type="design"
+                            data-category="corporate"
+                            onclick="selectCard(this, 'design')">
+                                                            <img class="card-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&amp;q=80"
+                                    alt="Corporate Sleek"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                                <div class="card-img-placeholder" style="display:none">&#127912;</div>
+                                                        <div class="card-body">
+                                <div class="card-name">Corporate Sleek</div>
+                                <div class="card-desc">Professional dark border with subtle branding space.</div>
+                                <span class="card-badge">Corporate</span>
+                            </div>
+                        </div>
+                                            <div class="custom-card"
+                            data-id="6"
+                            data-type="design"
+                            data-category="birthday"
+                            onclick="selectCard(this, 'design')">
+                                                            <img class="card-img" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&amp;q=80"
+                                    alt="Neon Glow"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                                <div class="card-img-placeholder" style="display:none">&#127912;</div>
+                                                        <div class="card-body">
+                                <div class="card-name">Neon Glow</div>
+                                <div class="card-desc">Electric neon glowing borders — great for night events and parties.</div>
+                                <span class="card-badge">Birthday</span>
+                            </div>
+                        </div>
+                                    </div>
+                <button class="carousel-btn next" onclick="slideCarousel('designCarousel', 1)">›</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Sticky CTA Bar -->
+<div class="cta-bar">
+    <div class="cta-bar-inner">
+        <div class="cta-summary">
+            <strong id="summaryText">Nothing selected yet</strong>
+            <div id="addonText" style="font-size:.78rem;color:var(--text-light);margin-top:2px"></div>
+        </div>
+        <div class="cta-btns">
+            <button onclick="resetAll()" style="background:none;border:2px solid var(--border);padding:10px 20px;border-radius:8px;cursor:pointer;font-size:.85rem;color:var(--text-mid)">
+                Reset All
+            </button>
+            <a href="contact.html" id="bookBtn" class="btn-primary">
+                Book with These Choices →
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // State
+    const state = {
+        sizes: [],
+        layout: null,
+        filter: null,
+        design: null
+    };
+
+    // Carousel sliding
+    const offsets = {};
+
+    function slideCarousel(id, dir) {
+        const track = document.getElementById(id);
+        const card = track.querySelector('.custom-card');
+        if (!card) return;
+        const cardW = card.offsetWidth + 24; // width + gap
+        offsets[id] = (offsets[id] || 0) - dir * cardW * 2;
+        // Clamp so we don't scroll too far
+        const maxOff = -(track.scrollWidth - track.parentElement.offsetWidth);
+        offsets[id] = Math.min(0, Math.max(maxOff, offsets[id]));
+        track.style.transform = `translateX(${offsets[id]}px)`;
+    }
+
+    // Single-select cards (layout, filter, design)
+    function selectCard(el, type) {
+        document.querySelectorAll(`[data-type="${type}"]`).forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+        state[type] = {
+            id: el.dataset.id,
+            name: el.querySelector('.card-name').textContent
+        };
+        updateSummary();
+    }
+
+    // Multi-select sizes
+    function toggleSize(el) {
+        el.classList.toggle('selected');
+        const id = el.dataset.id;
+        const price = parseFloat(el.dataset.price) || 0;
+        const name = el.querySelector('.size-name').textContent;
+        const idx = state.sizes.findIndex(s => s.id === id);
+        if (idx > -1) {
+            state.sizes.splice(idx, 1);
+        } else {
+            state.sizes.push({
+                id,
+                name,
+                price
+            });
+        }
+        updateSummary();
+    }
+
+    // Design category filter
+    function filterDesigns(cat, btn) {
+        document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('[data-type="design"]').forEach(card => {
+            card.style.display = (cat === 'all' || card.dataset.category === cat) ? 'block' : 'none';
+        });
+        // Reset carousel offset
+        offsets['designCarousel'] = 0;
+        document.getElementById('designCarousel').style.transform = 'translateX(0)';
+    }
+
+    // Summary bar
+    function updateSummary() {
+        const addonTotal = state.sizes.reduce((a, s) => a + s.price, 0);
+        const parts = [];
+        if (state.sizes.length) parts.push(` ${state.sizes.map(s=>s.name).join(', ')}`);
+        if (state.layout) parts.push(` ${state.layout.name}`);
+        if (state.filter) parts.push(` ${state.filter.name}`);
+        if (state.design) parts.push(` ${state.design.name}`);
+
+        document.getElementById('summaryText').textContent =
+            parts.length ? parts.join(' · ') : 'Nothing selected yet';
+        document.getElementById('addonText').textContent =
+            addonTotal > 0 ? `+₱${addonTotal.toLocaleString()} add-on for selected sizes` : '';
+
+        // Pass selections to booking via URL params
+        const params = new URLSearchParams();
+        if (state.sizes.length) params.set('sizes', state.sizes.map(s => s.id).join(','));
+        if (state.layout) params.set('layout', state.layout.id);
+        if (state.filter) params.set('filter', state.filter.id);
+        if (state.design) params.set('design', state.design.id);
+        if (addonTotal > 0) params.set('addon', addonTotal);
+        document.getElementById('bookBtn').href =
+            'contact.html' + params.toString();
+    }
+
+    // Reset all
+    function resetAll() {
+        state.sizes = [];
+        state.layout = null;
+        state.filter = null;
+        state.design = null;
+        document.querySelectorAll('.custom-card.selected, .size-card.selected')
+            .forEach(el => el.classList.remove('selected'));
+        updateSummary();
+    }
+</script>
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <span class="logo-icon">&#128248;</span>
+        <span class="logo-text">Pixel <em>Pod</em></span>
+      </div>
+      <p>Creating unforgettable memories, one snapshot at a time. The Philippines' premier photobooth experience.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Book Now</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h4>Get in Touch</h4>
+      <p>&#128386; <a href="mailto:houtaroudes@gmail.com">houtaroudes@gmail.com</a></p>
+      <p>&#9990; +63 917 130 4683</p>
+      <p>Instagram: @pixelpod.ph</p>
+      <p>Facebook: pxlpod.ph</p>
+      <div class="footer-social">
+        <a href="https://facebook.com/pxlpod.ph" target="_blank" class="social-btn">FB</a>
+        <a href="https://instagram.com/pixelpod.ph" target="_blank" class="social-btn">IG</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Pixel Pod Photobooth. All rights reserved.</p>
+    <p class="footer-dev">Built with dedication by <a href="mailto:houtaroudes@gmail.com">HoutarouDes</a></p>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body></html>

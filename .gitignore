@@ -19,5 +19,13 @@ database/pixelpod_db.sql
 booth/node_modules/
 booth/dist/
 
-# The generated static snapshot of the public pages (tools/export-static.mjs)
-site-preview/
+# The Vercel CLI link file and the local env it writes, local only
+.vercel/
+.env.local
+.env*.local
+
+# The generated static snapshot of the public pages (tools/export-static.mjs).
+# It is committed on purpose: the Vercel project is Git-connected and serves this
+# folder on every push rather than the repository root, so a push publishes the
+# rendered pages instead of handing the raw PHP source to the browser.
+# See vercel.json.

@@ -83,12 +83,15 @@ database, so the two halves are hosted separately:
 
 | What | Where | How |
 |---|---|---|
-| Landing page and packages | https://pixelpodweb.vercel.app | a static snapshot of the rendered pages, rebuilt with `node tools/export-static.mjs` against a running local server and deployed from `site-preview/` (gitignored, generated) |
+| Landing page and packages | https://pixelpodweb.vercel.app | a static snapshot of the rendered pages, rebuilt with `node tools/export-static.mjs` against a running local server and committed to `site-preview/`, which is the folder the Vercel project serves |
 | The browser booth | https://pixelpod-booth.vercel.app | the `booth/` app deployed on its own |
 
-Deploy `site-preview/`, never the repository root. Vercel serves a `.php` file as
-plain text, so a root deploy publishes the landing page's own PHP source with no
-packages rendered on it, and answers the `.php` paths with a 403.
+The Vercel project is connected to this repository, so every push deploys it,
+and `vercel.json` points that deployment at `site-preview/`. That is what keeps
+the URL working: without it a push publishes the repository root, and because
+Vercel cannot execute PHP it hands the landing page's own source to the browser
+as a download, with no packages rendered on it. After changing the public pages,
+re-run the export and commit the new snapshot before pushing.
 
 Booking, accounts and the admin area need PHP and a database session, so they
 run locally, or on a PHP host. `railway.json` is already written for the second

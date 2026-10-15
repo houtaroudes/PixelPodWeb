@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home | Pixel Pod Photobooth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-text">Pixel <em>Pod</em></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html"    class="active">Home</a></li>
+      <li><a href="services.html" >Services</a></li>
+      <li><a href="contact.html"  >Book Now</a></li>
+      <li><a href="customize.html">Customize</a></li>
+      <li><a href="https://pixelpod-booth.vercel.app">Try Booth</a></li>
+      <li><a href="contact.html"  >Contact</a></li>
+    </ul>
+    <div class="nav-actions" id="navActions">
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="hero-badge">&#10025;Philippines' One of the Best Photobooth Experience</div>
+      <h1 class="hero-title">Capture Every <em>Magical</em> Moment</h1>
+      <p class="hero-desc">Pixel Pod Photobooth transforms your events into lasting memories. Premium booths, instant prints, and unforgettable experiences for weddings, debuts, and corporate events.</p>
+      <div class="hero-cta">
+        <a href="contact.html" class="btn-gold">Book Your Event →</a>
+        <a href="services.html" class="btn-outline">View Packages</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num" data-count="500" data-suffix="+">0+</div>
+          <div class="hero-stat-label">Events Done</div>
+        </div>
+        <div>
+          <div class="hero-stat-num" data-count="6">0</div>
+          <div class="hero-stat-label">Booth Types</div>
+        </div>
+        <div>
+          <div class="hero-stat-num" data-count="5" data-suffix="★">0★</div>
+          <div class="hero-stat-label">Avg Rating</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-photo-stack">
+        <div class="hero-photo-card">
+          <img
+            src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&q=80"
+            alt="Instant Prints">
+          <span class="photo-card-text">Instant Prints</span>
+        </div>
+        <div class="hero-photo-card">
+          <img
+            src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&q=80"
+            alt="360° Booth">
+          <span class="photo-card-text">360° Booth</span>
+        </div>
+        <div class="floating-badge">&#10004; Premium Quality</div>
+        <div class="floating-badge">&#128241; Digital Gallery</div>
+      </div>
+    </div>
+</section>
+
+<section style="padding:90px 5%;background:var(--cream)">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Our Packages</div>
+      <h2 class="section-title">Find Your Perfect Booth</h2>
+      <p class="section-sub">From intimate gatherings to grand celebrations — we have a photobooth for every occasion.</p>
+    </div>
+    <div class="services-grid">
+              <div class="service-card">
+          <div class="service-card-img" style="background:linear-gradient(135deg,#6b0f0f,#8b1a1a);padding:0;overflow:hidden">
+                          <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&amp;q=80" alt="Mini Pod"
+                style="width:100%;height:100%;object-fit:cover"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                      </div>
+          <div class="service-card-body">
+            <h3 class="service-card-name">Mini Pod</h3>
+            <p class="service-card-desc">Compact budget-friendly option perfect for small spaces and intimate celebrations. Includes basic props and d…</p>
+            <div class="service-card-meta">
+              <div class="service-price">₱3,500<span>/event</span></div>
+              <span class="service-duration">⏱ 2hrs</span>
+            </div>
+          </div>
+        </div>
+              <div class="service-card">
+          <div class="service-card-img" style="background:linear-gradient(135deg,#4a0808,#c9a84c);padding:0;overflow:hidden">
+                          <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&amp;q=80" alt="Classic Booth"
+                style="width:100%;height:100%;object-fit:cover"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                      </div>
+          <div class="service-card-body">
+            <h3 class="service-card-name">Classic Booth</h3>
+            <p class="service-card-desc">Our signature open-air photobooth with standard backdrop, unlimited 2x6 prints, and a dedicated attendant. Pe…</p>
+            <div class="service-card-meta">
+              <div class="service-price">₱4,500<span>/event</span></div>
+              <span class="service-duration">⏱ 2hrs</span>
+            </div>
+          </div>
+        </div>
+              <div class="service-card">
+          <div class="service-card-img" style="background:linear-gradient(135deg,#8b1a1a,#c94f4f);padding:0;overflow:hidden">
+                          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&amp;q=80" alt="Roving Booth"
+                style="width:100%;height:100%;object-fit:cover"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                      </div>
+          <div class="service-card-body">
+            <h3 class="service-card-name">Roving Booth</h3>
+            <p class="service-card-desc">Our roving photographer-style booth that moves through your event capturing candid moments with instant on-si…</p>
+            <div class="service-card-meta">
+              <div class="service-price">₱6,000<span>/event</span></div>
+              <span class="service-duration">⏱ 3hrs</span>
+            </div>
+          </div>
+        </div>
+              <div class="service-card">
+          <div class="service-card-img" style="background:linear-gradient(135deg,#c9a84c,#e8c97a);padding:0;overflow:hidden">
+                          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&amp;q=80" alt="Premium Package"
+                style="width:100%;height:100%;object-fit:cover"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                      </div>
+          <div class="service-card-body">
+            <h3 class="service-card-name">Premium Package</h3>
+            <p class="service-card-desc">Upgraded experience with LED ring lights, premium backdrops, digital gallery, and 2 dedicated attendants. Ide…</p>
+            <div class="service-card-meta">
+              <div class="service-price">₱8,000<span>/event</span></div>
+              <span class="service-duration">⏱ 4hrs</span>
+            </div>
+          </div>
+        </div>
+              <div class="service-card">
+          <div class="service-card-img" style="background:linear-gradient(135deg,#4a0808,#8b1a1a);padding:0;overflow:hidden">
+                          <img src="https://images.unsplash.com/photo-1607434472257-d9f8e57a643d?w=600&amp;q=80" alt="Mirror Booth"
+                style="width:100%;height:100%;object-fit:cover"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                      </div>
+          <div class="service-card-body">
+            <h3 class="service-card-name">Mirror Booth</h3>
+            <p class="service-card-desc">Full-length magic mirror with animated effects, on-screen prompts, and digital signature. An unforgettable in…</p>
+            <div class="service-card-meta">
+              <div class="service-price">₱9,500<span>/event</span></div>
+              <span class="service-duration">⏱ 4hrs</span>
+            </div>
+          </div>
+        </div>
+              <div class="service-card">
+          <div class="service-card-img" style="background:linear-gradient(135deg,#6b0f0f,#c9a84c);padding:0;overflow:hidden">
+                          <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&amp;q=80" alt="360 Spinner Booth"
+                style="width:100%;height:100%;object-fit:cover"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                      </div>
+          <div class="service-card-body">
+            <h3 class="service-card-name">360 Spinner Booth</h3>
+            <p class="service-card-desc">Immersive 360-degree slow-motion video booth. Guests get a cinematic clip sent directly to their phones. The …</p>
+            <div class="service-card-meta">
+              <div class="service-price">₱12,000<span>/event</span></div>
+              <span class="service-duration">⏱ 3hrs</span>
+            </div>
+          </div>
+        </div>
+          </div>
+    <div style="text-align:center;margin-top:40px">
+      <a href="services.html" class="btn-primary">View All Packages →</a>
+    </div>
+  </div>
+</section>
+
+<section class="features-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag" style="color:var(--gold-light);border-color:rgba(201,168,76,.3)">Why Choose Us</div>
+      <h2 class="section-title" style="color:#fff">The Pixel Pod Difference</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">&#128199;</div>
+        <h3>Instant Prints</h3>
+        <p>High-quality prints in under 10 seconds so guests take home memories right away.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#127912;</div>
+        <h3>Custom Designs</h3>
+        <p>Personalized templates and backdrops tailored to your event's theme and branding.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#128100;</div>
+        <h3>Dedicated Attendant</h3>
+        <p>Every booking includes a friendly professional attendant to guide your guests.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#128241;</div>
+        <h3>Digital Gallery</h3>
+        <p>All photos uploaded to a private online gallery accessible for 30 days after the event.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="container">
+    <div class="section-tag">Limited Slots Available</div>
+    <h2>Ready to Make Memories?</h2>
+    <p>Don't miss your date — our calendar fills up fast. Book your Pixel Pod experience today.</p>
+    <a href="contact.html" class="btn-primary" style="font-size:1.05rem;padding:16px 44px">Book Now — It's Easy!</a>
+  </div>
+</section>
+
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <span class="logo-icon">&#128248;</span>
+        <span class="logo-text">Pixel <em>Pod</em></span>
+      </div>
+      <p>Creating unforgettable memories, one snapshot at a time. The Philippines' premier photobooth experience.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Book Now</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h4>Get in Touch</h4>
+      <p>&#128386; <a href="mailto:houtaroudes@gmail.com">houtaroudes@gmail.com</a></p>
+      <p>&#9990; +63 917 130 4683</p>
+      <p>Instagram: @pixelpod.ph</p>
+      <p>Facebook: pxlpod.ph</p>
+      <div class="footer-social">
+        <a href="https://facebook.com/pxlpod.ph" target="_blank" class="social-btn">FB</a>
+        <a href="https://instagram.com/pixelpod.ph" target="_blank" class="social-btn">IG</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Pixel Pod Photobooth. All rights reserved.</p>
+    <p class="footer-dev">Built with dedication by <a href="mailto:houtaroudes@gmail.com">HoutarouDes</a></p>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body></html>

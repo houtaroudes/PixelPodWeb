@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | Pixel Pod Photobooth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-text">Pixel <em>Pod</em></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html"    >Home</a></li>
+      <li><a href="services.html" >Services</a></li>
+      <li><a href="contact.html"  >Book Now</a></li>
+      <li><a href="customize.html">Customize</a></li>
+      <li><a href="https://pixelpod-booth.vercel.app">Try Booth</a></li>
+      <li><a href="contact.html"  class="active">Contact</a></li>
+    </ul>
+    <div class="nav-actions" id="navActions">
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="page-hero">
+  <div class="page-hero-content">
+    <div class="section-tag" style="margin-bottom:12px">Get In Touch</div>
+    <h1>Contact Us</h1>
+    <p>We'd love to hear from you about events, pricing, or anything else!</p>
+  </div>
+</div>
+<section style="padding:80px 5%;background:var(--cream)">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <h3 style="font-family:var(--font-display);font-size:1.5rem;color:var(--maroon-deep);margin-bottom:20px">Reach Pixel Pod</h3>
+        <p style="color:var(--text-mid);margin-bottom:32px;font-size:.95rem">Have questions about packages, availability, or want a custom quote? Reach us on any channel.</p>
+        <div class="contact-item"><div class="contact-item-icon">&#128386;</div><div><p style="font-size:.82rem;color:var(--text-light)">Email</p><strong><a href="mailto:houtaroudes@gmail.com">houtaroudes@gmail.com</a></strong></div></div>
+        <div class="contact-item"><div class="contact-item-icon">&#128222;</div><div><p style="font-size:.82rem;color:var(--text-light)">Phone / Viber</p><strong><a href="tel:0917 130 4683">0917 130 4683</a></strong></div></div>
+        <div class="contact-item"><div class="contact-item-icon">&#128077;</div><div><p style="font-size:.82rem;color:var(--text-light)">Facebook</p><strong><a href="https://facebook.com/pxlpod.ph" target="_blank">pxlpod.ph</a></strong></div></div>
+        <div class="contact-item"><div class="contact-item-icon">&#128248;</div><div><p style="font-size:.82rem;color:var(--text-light)">Instagram</p><strong><a href="https://instagram.com/pixelpod.ph" target="_blank">@pixelpod.ph</a></strong></div></div>
+        <div style="margin-top:32px;padding:20px;background:rgba(107,15,15,.05);border-radius:16px;border:1px solid rgba(107,15,15,.1)">
+          <h4 style="font-family:var(--font-display);color:var(--maroon-deep);margin-bottom:8px">Response Hours</h4>
+          <p style="font-size:.9rem;color:var(--text-mid);line-height:1.7">Mon–Sat: 9:00 AM – 8:00 PM<br>Sun: 10:00 AM – 6:00 PM</p>
+        </div>
+        <div style="margin-top:16px;padding:16px 20px;background:rgba(0,0,0,.02);border-radius:12px;border:1px solid rgba(0,0,0,.06)">
+          <p style="font-size:.85rem;color:var(--text-light)">Built with dedication by <strong><a href="mailto:houtaroudes@gmail.com" style="color:var(--maroon-deep);text-decoration:underline">HoutarouDes</a></strong></p>
+        </div>
+      </div>
+      <div class="form-wrapper" style="max-width:none;padding:40px">
+        <h2 class="form-title" style="font-size:1.6rem;text-align:left">Send a Message</h2>
+                        <form method="POST">
+          <input type="hidden" name="csrf_token" value="4336bf371f8878240d6e8fcc24afa1b3fb84387afb6e4b741f96215124b94568">          <div class="form-row">
+            <div class="form-group"><label>Full Name *</label><input type="text" name="full_name" required placeholder="Your full name" value=""></div>
+            <div class="form-group"><label>Email *</label><input type="email" name="email" required placeholder="you@email.com" value=""></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Phone</label><input type="text" name="phone" placeholder="+63 9XX XXX XXXX" value=""></div>
+            <div class="form-group"><label>Subject</label>
+              <select name="subject">
+                <option value="">— Select topic —</option>
+                                <option value="Package Inquiry" >Package Inquiry</option>
+                                <option value="Booking / Availability" >Booking / Availability</option>
+                                <option value="Pricing & Quotation" >Pricing & Quotation</option>
+                                <option value="Corporate Event" >Corporate Event</option>
+                                <option value="Other" >Other</option>
+                              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Message * <span id="char_count" style="color:var(--text-light);font-weight:400">0</span> chars</label>
+            <textarea id="message" name="message" required style="min-height:160px" placeholder="Tell us about your event, date, number of guests…"></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message →</button>
+        </form>
+              </div>
+    </div>
+  </div>
+</section>
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <span class="logo-icon">&#128248;</span>
+        <span class="logo-text">Pixel <em>Pod</em></span>
+      </div>
+      <p>Creating unforgettable memories, one snapshot at a time. The Philippines' premier photobooth experience.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Book Now</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h4>Get in Touch</h4>
+      <p>&#128386; <a href="mailto:houtaroudes@gmail.com">houtaroudes@gmail.com</a></p>
+      <p>&#9990; +63 917 130 4683</p>
+      <p>Instagram: @pixelpod.ph</p>
+      <p>Facebook: pxlpod.ph</p>
+      <div class="footer-social">
+        <a href="https://facebook.com/pxlpod.ph" target="_blank" class="social-btn">FB</a>
+        <a href="https://instagram.com/pixelpod.ph" target="_blank" class="social-btn">IG</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Pixel Pod Photobooth. All rights reserved.</p>
+    <p class="footer-dev">Built with dedication by <a href="mailto:houtaroudes@gmail.com">HoutarouDes</a></p>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body></html>
