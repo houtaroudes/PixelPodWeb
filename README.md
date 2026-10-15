@@ -86,6 +86,10 @@ database, so the two halves are hosted separately:
 | Landing page and packages | https://pixelpodweb.vercel.app | a static snapshot of the rendered pages, rebuilt with `node tools/export-static.mjs` against a running local server and deployed from `site-preview/` (gitignored, generated) |
 | The browser booth | https://pixelpod-booth.vercel.app | the `booth/` app deployed on its own |
 
+Deploy `site-preview/`, never the repository root. Vercel serves a `.php` file as
+plain text, so a root deploy publishes the landing page's own PHP source with no
+packages rendered on it, and answers the `.php` paths with a 403.
+
 Booking, accounts and the admin area need PHP and a database session, so they
 run locally, or on a PHP host. `railway.json` is already written for the second
 route: point a Railway project at this repo, add a MySQL service, set `DB_HOST`,
