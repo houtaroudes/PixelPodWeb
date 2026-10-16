@@ -1072,7 +1072,7 @@ section {
   }
 }
 
-/* Footer: Developer Credit */
+/* Footer: developer credit */
 .footer-dev {
   font-size: 0.8rem;
   margin-top: 6px;
@@ -1085,6 +1085,7 @@ section {
 }
 .footer-dev a:hover {
   opacity: 0.8;
+}
 }
   .data-table {
     display: block;
@@ -1092,7 +1093,7 @@ section {
   }
 }
 
-/* Footer: Developer Credit */
+/* Footer: developer credit */
 .footer-dev {
   font-size: 0.8rem;
   margin-top: 6px;
@@ -1105,3 +1106,24 @@ section {
 }
 .footer-dev a:hover {
   opacity: 0.8;
+}
+
+/* Icons: one Tabler sprite, printed by iconSprite() in includes/icons.php.
+   A glyph is one em tall and inherits currentColor, so a card that sets its
+   own font-size sizes its icon with it. */
+.pp-icon {
+  width: 1em;
+  height: 1em;
+  flex: none;
+  vertical-align: -0.14em;
+}
+/* The package card image area is one of six gradients, maroon next to gold, so a
+   fallback glyph is white with a soft dark halo to read on either. */
+.service-card-img .pp-icon {
+  color: #fff;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .45));
+}
+
+.pp-icon-sm { width: .85em; height: .85em; vertical-align: -0.1em; }
+.pp-icon-lg { width: 1.5em; height: 1.5em; vertical-align: -0.3em; }
+.pp-icon-xl { width: 2.6em; height: 2.6em; vertical-align: -0.55em; }
