@@ -18,6 +18,8 @@ $base      = basename($_SERVER['PHP_SELF']);
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= SITE_URL ?>/public/css/style.css">
+<link rel="icon" href="<?= SITE_URL ?>/public/favicon.ico?v=2" sizes="32x32">
+<link rel="icon" href="<?= SITE_URL ?>/public/favicon.svg?v=2" type="image/svg+xml">
 <?= $extraHead ?? '' ?>
 </head>
 <body>

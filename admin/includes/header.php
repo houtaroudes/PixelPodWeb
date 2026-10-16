@@ -18,6 +18,8 @@ $ini = strtoupper(substr($u['first_name'], 0, 1) . substr($u['last_name'], 0, 1)
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="<?= SITE_URL ?>/admin/css/admin.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="icon" href="<?= SITE_URL ?>/public/favicon.ico?v=2" sizes="32x32">
+  <link rel="icon" href="<?= SITE_URL ?>/public/favicon.svg?v=2" type="image/svg+xml">
   <style>
     .admin-sidebar {
       display: flex !important;
