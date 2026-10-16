@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Pixel Pod">
+  <title>Pixel Pod</title>
+  <!-- This mark is the project's own initials, PXPD for PiXel PoD, not the
+       workspace signature monogram. A B on a photobooth tab named the owner
+       rather than the site, which is what this replaces. Two rows of two
+       letters in the two-tone the earlier mark used, cream over gold on the
+       maroon field, drawn as strokes so a 16px tab icon cannot come out in
+       whatever face the browser happens to have, and so tools/build-favicon-ico.mjs
+       can rasterise it without a font or an image library.
+
+       Both stems sit at x 7.15 and both rows are nine units of cap height, so
+       the two rows line up as a block rather than as four loose letters. The
+       2.5 stroke is the weight the earlier mark used, kept because four
+       letters in a 16px tab need it; the round caps still clear each other by
+       a unit or more, and the rasteriser in tools/build-favicon-ico.mjs draws
+       exactly these shapes. -->
+  <rect width="32" height="32" rx="7" fill="#6b0f0f" />
+  <rect x="1.4" y="1.4" width="29.2" height="29.2" rx="5.9" fill="none" stroke="#c9a84c" stroke-width="1" opacity=".5" />
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+    <path d="M7.15 5.1v9" stroke="#f4f4ed" />
+    <path d="M7.15 5.1h3.4a3 2.85 0 0 1 0 5.7h-3.4" stroke="#f4f4ed" />
+    <path d="M18.85 5.1l6 9" stroke="#f4f4ed" />
+    <path d="M24.85 5.1l-6 9" stroke="#f4f4ed" />
+    <path d="M7.15 17.9v9" stroke="#c9a84c" />
+    <path d="M7.15 17.9h3.4a3 2.85 0 0 1 0 5.7h-3.4" stroke="#c9a84c" />
+    <path d="M18.85 26.9V17.9h2.8a3.3 4.5 0 0 1 0 9h-2.8z" stroke="#c9a84c" />
+  </g>
+</svg>
