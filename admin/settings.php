@@ -119,8 +119,8 @@ $customers = $pdo->query("SELECT * FROM users WHERE role='customer' ORDER BY cre
                     <?php endif; ?>
                 </td>
                 <td><?= htmlspecialchars($u['first_name'] . ' ' . $u['last_name']) ?></td>
-                <td style="color:var(--text-mid)"><?= htmlspecialchars($u['email'] ?? '—') ?></td>
-                <td style="color:var(--text-mid)"><?= htmlspecialchars($u['phone'] ?? '—') ?></td>
+                <td style="color:var(--text-mid)"><?= htmlspecialchars($u['email'] ?? '-') ?></td>
+                <td style="color:var(--text-mid)"><?= htmlspecialchars($u['phone'] ?? '-') ?></td>
                 <td style="color:var(--text-light)"><?= date('M d, Y', strtotime($u['created_at'])) ?></td>
                 <td>
                     <div style="display:flex;gap:6px;flex-wrap:wrap">
@@ -174,8 +174,8 @@ $customers = $pdo->query("SELECT * FROM users WHERE role='customer' ORDER BY cre
             <tr class="searchable-row">
                 <td><strong style="color:var(--maroon)">@<?= htmlspecialchars($u['username']) ?></strong></td>
                 <td><?= htmlspecialchars($u['first_name'] . ' ' . $u['last_name']) ?></td>
-                <td style="color:var(--text-mid)"><?= htmlspecialchars($u['email'] ?? '—') ?></td>
-                <td style="color:var(--text-mid)"><?= htmlspecialchars($u['phone'] ?? '—') ?></td>
+                <td style="color:var(--text-mid)"><?= htmlspecialchars($u['email'] ?? '-') ?></td>
+                <td style="color:var(--text-mid)"><?= htmlspecialchars($u['phone'] ?? '-') ?></td>
                 <td style="color:var(--text-light)"><?= date('M d, Y', strtotime($u['created_at'])) ?></td>
                 <td>
                     <div style="display:flex;gap:6px;flex-wrap:wrap">
@@ -229,7 +229,7 @@ $customers = $pdo->query("SELECT * FROM users WHERE role='customer' ORDER BY cre
                        placeholder="e.g. staff_anna or juan_dc"
                        pattern="[a-zA-Z0-9_]{3,30}"
                        title="3-30 chars. Letters, numbers, underscores only.">
-                <small style="color:var(--text-light);font-size:.75rem">3–30 characters. Letters, numbers, underscores only.</small>
+                <small style="color:var(--text-light);font-size:.75rem">3 to 30 characters. Letters, numbers, underscores only.</small>
             </div>
             <div class="form-grid-2">
                 <div class="form-group">

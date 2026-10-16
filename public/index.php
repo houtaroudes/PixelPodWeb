@@ -57,7 +57,7 @@ $grads = ['135deg,#6b0f0f,#8b1a1a', '135deg,#4a0808,#c9a84c', '135deg,#8b1a1a,#c
     <div class="section-header">
       <div class="section-tag">Our Packages</div>
       <h2 class="section-title">Find Your Perfect Booth</h2>
-      <p class="section-sub">From intimate gatherings to grand celebrations — we have a photobooth for every occasion.</p>
+      <p class="section-sub">From intimate gatherings to grand celebrations, we have a photobooth for every occasion.</p>
     </div>
     <div class="services-grid">
       <?php foreach ($services as $i => $s):
@@ -123,8 +123,8 @@ $grads = ['135deg,#6b0f0f,#8b1a1a', '135deg,#4a0808,#c9a84c', '135deg,#8b1a1a,#c
   <div class="container">
     <div class="section-tag">Limited Slots Available</div>
     <h2>Ready to Make Memories?</h2>
-    <p>Don't miss your date — our calendar fills up fast. Book your Pixel Pod experience today.</p>
-    <a href="<?= SITE_URL ?>/public/booking.php" class="btn-primary" style="font-size:1.05rem;padding:16px 44px">Book Now — It's Easy!</a>
+    <p>Don't miss your date: our calendar fills up fast. Book your Pixel Pod experience today.</p>
+    <a href="<?= SITE_URL ?>/public/booking.php" class="btn-primary" style="font-size:1.05rem;padding:16px 44px">Book Now, It's Easy!</a>
   </div>
 </section>
 

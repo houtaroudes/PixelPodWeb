@@ -172,7 +172,7 @@ $grads = ['135deg,#6b0f0f,#8b1a1a','135deg,#4a0808,#c9a84c','135deg,#8b1a1a,#c94
             <?= renderImageTabs('add') ?>
             <div class="form-group" style="display:flex;align-items:center;gap:10px;margin-top:4px">
                 <input type="checkbox" name="is_active" id="addActive" checked style="width:auto">
-                <label for="addActive" style="margin:0;cursor:pointer;font-size:.88rem">Active — show on public website</label>
+                <label for="addActive" style="margin:0;cursor:pointer;font-size:.88rem">Active, show on public website</label>
             </div>
             <div class="form-actions"><button type="submit" class="btn-save">Add Package</button><button type="button" class="btn-cancel" data-modal-close>Cancel</button></div>
         </form>
@@ -199,7 +199,7 @@ $grads = ['135deg,#6b0f0f,#8b1a1a','135deg,#4a0808,#c9a84c','135deg,#8b1a1a,#c94
             </div>
             <div class="form-group" style="display:flex;align-items:center;gap:10px">
                 <input type="checkbox" name="is_active" id="editActive" style="width:auto">
-                <label for="editActive" style="margin:0;cursor:pointer;font-size:.88rem">Active — show on public website</label>
+                <label for="editActive" style="margin:0;cursor:pointer;font-size:.88rem">Active, show on public website</label>
             </div>
             <div class="form-actions"><button type="submit" class="btn-save">Save Changes</button><button type="button" class="btn-cancel" data-modal-close>Cancel</button></div>
         </form>
@@ -243,7 +243,7 @@ $grads = ['135deg,#6b0f0f,#8b1a1a','135deg,#4a0808,#c9a84c','135deg,#8b1a1a,#c94
             <div id="pane-up">
                 <input type="file" name="image" accept="image/*" onchange="previewFile(this,'fp-edit')"
                     style="width:100%;padding:10px;border:1.5px solid var(--border);border-radius:8px;font-size:.85rem;background:var(--panel);cursor:pointer">
-                <p style="font-size:.75rem;color:var(--text-light);margin-top:5px">JPG, PNG, WebP, GIF — max 5MB</p>
+                <p style="font-size:.75rem;color:var(--text-light);margin-top:5px">JPG, PNG, WebP, GIF (max 5MB)</p>
                 <div id="fp-edit" style="display:none;margin-top:10px"><img style="width:100%;max-height:160px;object-fit:cover;border-radius:8px;border:1px solid var(--border)"></div>
             </div>
             <div id="pane-url" style="display:none">

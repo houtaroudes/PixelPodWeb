@@ -79,7 +79,7 @@ $customers = $stmt->fetchAll();
                         </div>
                     </td>
                     <td>
-                        <div style="font-size:.85rem"><?= htmlspecialchars($c['email'] ?? '—') ?></div>
+                        <div style="font-size:.85rem"><?= htmlspecialchars($c['email'] ?? '-') ?></div>
                         <?php if($c['phone']): ?><div style="font-size:.78rem;color:var(--text-light)"><?= htmlspecialchars($c['phone']) ?></div><?php endif; ?>
                     </td>
                     <td style="font-size:.85rem;color:var(--text-mid)"><?= date('M d, Y',strtotime($c['created_at'])) ?></td>

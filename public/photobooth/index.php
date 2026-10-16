@@ -496,7 +496,7 @@ $filters = $pdo->query("SELECT * FROM filters WHERE is_active=1 ORDER BY sort_or
     <div style="max-width:600px;margin:0 auto;padding:0 24px">
         <div style="font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:12px">PixelPod Virtual Booth</div>
         <h1>Strike a Pose, <em>Capture the Moment</em></h1>
-        <p>Take fun photobooth pictures right here in your browser — no app needed! Get your photos instantly with a QR code.</p>
+        <p>Take fun photobooth pictures right here in your browser, no app needed! Get your photos instantly with a QR code.</p>
     </div>
 </div>
 
@@ -512,13 +512,13 @@ $filters = $pdo->query("SELECT * FROM filters WHERE is_active=1 ORDER BY sort_or
             <div class="layout-choice active" data-layout="strip" onclick="selectLayout(this)">
                 <div class="icon">🎞️</div>
                 <h3>Photo Strip</h3>
-                <p>Classic vertical strip — the timeless photobooth look</p>
+                <p>Classic vertical strip: the timeless photobooth look</p>
                 <span class="shots-badge">3 shots</span>
             </div>
             <div class="layout-choice" data-layout="grid" onclick="selectLayout(this)">
                 <div class="icon">⊞</div>
                 <h3>Photo Grid</h3>
-                <p>Fun 2×2 grid — great for groups and parties!</p>
+                <p>Fun 2×2 grid, great for groups and parties!</p>
                 <span class="shots-badge">4 shots</span>
             </div>
         </div>
@@ -539,7 +539,7 @@ $filters = $pdo->query("SELECT * FROM filters WHERE is_active=1 ORDER BY sort_or
             &#128248; Start Photobooth →
         </button>
         <p style="text-align:center;font-size:.8rem;color:var(--text-light);margin-top:12px">
-            Your browser will ask for camera permission — click <strong>Allow</strong>
+            Your browser will ask for camera permission, click <strong>Allow</strong>
         </p>
     </div>
 

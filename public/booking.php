@@ -64,10 +64,10 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
         <div class="form-group">
           <label>Package *</label>
           <select id="service_id" name="service_id" required>
-            <option value="">— Select a package —</option>
+            <option value="">Select a package</option>
             <?php foreach($services as $s): ?>
             <option value="<?= $s['id'] ?>" data-duration="<?= $s['duration_hours'] ?>" data-price="<?= $s['price'] ?>" <?= $pre===$s['id']||((int)($_POST['service_id']??0)===$s['id'])?'selected':'' ?>>
-              <?= htmlspecialchars($s['name']) ?> — ₱<?= number_format($s['price'],0) ?>
+              <?= htmlspecialchars($s['name']) ?> ₱<?= number_format($s['price'],0) ?>
             </option>
             <?php endforeach; ?>
           </select>
@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD']==='POST') {
       <div class="form-group">
         <label>Preferred Payment Method *</label>
         <select name="payment_method" required id="payment_method" onchange="showPayInfo(this.value)">
-          <option value="">— Select payment method —</option>
+          <option value="">Select payment method</option>
           <option value="gcash"  <?= ($_POST['payment_method']??'')==='gcash' ?'selected':'' ?>>💙 GCash</option>
           <option value="maya"   <?= ($_POST['payment_method']??'')==='maya'  ?'selected':'' ?>>💚 Maya</option>
           <option value="cod"    <?= ($_POST['payment_method']??'')==='cod'   ?'selected':'' ?>>💵 Cash on Delivery (COD)</option>

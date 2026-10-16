@@ -93,7 +93,7 @@ $today  = count(array_filter($sessions, fn($s)=>date('Y-m-d',strtotime($s['creat
                          style="width:40px;height:40px;border-radius:4px;border:1px solid var(--border)"
                          onerror="this.style.display='none'">
                     <?php else: ?>
-                    <span style="color:var(--text-light);font-size:.78rem">—</span>
+                    <span style="color:var(--text-light);font-size:.78rem">-</span>
                     <?php endif; ?>
                 </td>
                 <td><span class="status-badge status-approved"><?= ucfirst($s['layout']) ?></span></td>

@@ -16,7 +16,7 @@ function renderImageTabs(string $prefix = 'add'): string {
     <div id="pane-up-{$prefix}">
         <input type="file" name="image" accept="image/*" onchange="previewFile(this,'fp-{$prefix}')"
                style="width:100%;padding:10px;border:1.5px solid var(--border);border-radius:8px;font-size:.85rem;background:var(--panel);cursor:pointer">
-        <p style="font-size:.75rem;color:var(--text-light);margin-top:5px">JPG, PNG, WebP, GIF — max 5MB</p>
+        <p style="font-size:.75rem;color:var(--text-light);margin-top:5px">JPG, PNG, WebP, GIF (max 5MB)</p>
         <div id="fp-{$prefix}" style="display:none;margin-top:10px">
             <img style="width:100%;max-height:160px;object-fit:cover;border-radius:8px;border:1px solid var(--border)">
         </div>

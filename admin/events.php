@@ -76,7 +76,7 @@ $nextM = date('Y-m',strtotime($startDate.' +1 month'));
                 <span class="status-badge status-<?= $e['status'] ?>"><?= ucfirst($e['status']) ?></span>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:.82rem;color:var(--text-mid)">
-                <div>&#128338; <?= date('h:i A',strtotime($e['start_time'])) ?> – <?= date('h:i A',strtotime($e['end_time'])) ?></div>
+                <div>&#128338; <?= date('h:i A',strtotime($e['start_time'])) ?> to <?= date('h:i A',strtotime($e['end_time'])) ?></div>
                 <div>&#128100; <?= htmlspecialchars($e['customer_name']) ?></div>
                 <div>&#128230; <?= htmlspecialchars($e['service_name']) ?></div>
                 <div>&#128179; <span class="status-badge status-<?= $e['payment_status']??'pending' ?>"><?= ucfirst($e['payment_status']??'pending') ?></span></div>

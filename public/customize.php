@@ -390,7 +390,7 @@ $categories = $pdo->query("SELECT DISTINCT category FROM designs WHERE is_active
     <div style="position:relative;max-width:700px;margin:0 auto;padding:0 24px">
         <div class="section-tag-sm">Customize Your Experience</div>
         <h1>Make It <em>Yours</em></h1>
-        <p>Browse our layouts, filters, and designs — then book your perfect PixelPod experience!</p>
+        <p>Browse our layouts, filters, and designs, then book your perfect PixelPod experience!</p>
         <a href="/public/booking.php" class="btn-primary" style="font-size:1rem;padding:14px 36px">
             Book Now →
         </a>
@@ -404,7 +404,7 @@ $categories = $pdo->query("SELECT DISTINCT category FROM designs WHERE is_active
         <div class="section-header">
             <div class="section-tag-sm">Step 1</div>
             <h2>Choose Your <em>Photo Size</em></h2>
-            <p>Pick one or more print sizes — mix and match! Add-on prices apply.</p>
+            <p>Pick one or more print sizes, mix and match! Add-on prices apply.</p>
         </div>
         <div class="size-grid" id="sizeGrid">
             <?php foreach ($sizes as $s): ?>
@@ -451,7 +451,7 @@ $categories = $pdo->query("SELECT DISTINCT category FROM designs WHERE is_active
         <div class="section-header">
             <div class="section-tag-sm">Step 3</div>
             <h2>Choose a <em>Filter</em></h2>
-            <p>Set the mood — all filters are included at no extra cost!</p>
+            <p>Set the mood: all filters are included at no extra cost!</p>
         </div>
         <?php renderCarousel('filterCarousel', $filters, 'filter'); ?>
     </div>

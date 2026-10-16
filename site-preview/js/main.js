@@ -1,4 +1,4 @@
-/* Pixel Pod — Public JS */
+/* Pixel Pod: Public JS */
 document.addEventListener('DOMContentLoaded', () => {
     // Sticky nav
     const nav = document.getElementById('siteNav');

@@ -48,7 +48,7 @@ function handleServiceImage(array $file, string $urlInput, ?string $currentImage
         ];
     }
 
-    // No new image provided — keep existing
+    // No new image provided, keep existing
     return [
         'success'    => true,
         'image'      => $currentImage ?? null,

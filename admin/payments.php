@@ -99,10 +99,10 @@ $totalPending = $pdo->query("SELECT COUNT(*) FROM payments WHERE payment_status=
                     <td style="font-size:.85rem"><?= htmlspecialchars($p['service_name']) ?></td>
                     <td style="font-size:.85rem"><?= date('M d, Y',strtotime($p['event_date'])) ?></td>
                     <td style="font-weight:700;color:var(--maroon)">₱<?= number_format($p['amount'],2) ?></td>
-                    <td style="font-size:.82rem"><?php $methods=['gcash'=>'GCash','maya'=>'Maya','cod'=>'COD']; echo $methods[$p['payment_method']] ?? ucfirst($p['payment_method']??'—'); ?></td>
+                    <td style="font-size:.82rem"><?php $methods=['gcash'=>'GCash','maya'=>'Maya','cod'=>'COD']; echo $methods[$p['payment_method']] ?? ucfirst($p['payment_method']??'-'); ?></td>
                     <td><span class="status-badge status-<?= $p['payment_status'] ?>"><?= ucfirst($p['payment_status']) ?></span></td>
-                    <td style="font-size:.82rem;color:var(--text-mid)"><?= htmlspecialchars($p['reference_number']??'—') ?></td>
-                    <td style="font-size:.82rem;color:var(--text-mid)"><?= $p['paid_at']?date('M d, Y',strtotime($p['paid_at'])):'—' ?></td>
+                    <td style="font-size:.82rem;color:var(--text-mid)"><?= htmlspecialchars($p['reference_number']??'-') ?></td>
+                    <td style="font-size:.82rem;color:var(--text-mid)"><?= $p['paid_at']?date('M d, Y',strtotime($p['paid_at'])):'-' ?></td>
                     <td><button class="action-btn edit" title="Edit" onclick="openEditPay(<?= htmlspecialchars(json_encode($p),ENT_QUOTES) ?>)">&#x270E;</button></td>
                 </tr>
                 <?php endforeach; ?>

@@ -129,7 +129,7 @@ $bookings = $stmt->fetchAll();
                         </td>
                         <td>
                             <div style="font-size:.88rem;font-weight:600"><?= date('M d, Y', strtotime($b['event_date'])) ?></div>
-                            <div style="font-size:.75rem;color:var(--text-light)"><?= date('h:i A', strtotime($b['start_time'])) ?> – <?= date('h:i A', strtotime($b['end_time'])) ?></div>
+                            <div style="font-size:.75rem;color:var(--text-light)"><?= date('h:i A', strtotime($b['start_time'])) ?> to <?= date('h:i A', strtotime($b['end_time'])) ?></div>
                         </td>
                         <td><span class="status-badge status-<?= $b['status'] ?>"><?= ucfirst($b['status']) ?></span></td>
                         <td><span class="status-badge status-<?= $b['payment_status'] ?? 'pending' ?>"><?= ucfirst($b['payment_status'] ?? 'pending') ?></span></td>
@@ -215,8 +215,8 @@ function openViewModal(b) {
             <div><strong>Service</strong><br>${b.service_name}</div>
             <div><strong>Event</strong><br>${b.event_name}</div>
             <div><strong>Date</strong><br>${b.event_date}</div>
-            <div><strong>Time</strong><br>${b.start_time} – ${b.end_time}</div>
-            <div><strong>Venue</strong><br>${b.venue||'—'}</div>
+            <div><strong>Time</strong><br>${b.start_time} to ${b.end_time}</div>
+            <div><strong>Venue</strong><br>${b.venue||'-'}</div>
             <div><strong>Guests</strong><br>${b.guest_count}</div>
             <div><strong>Status</strong><br><span class="status-badge status-${b.status}">${b.status}</span></div>
             <div><strong>Payment</strong><br><span class="status-badge status-${b.payment_status||'pending'}">${b.payment_status||'pending'}</span></div>
