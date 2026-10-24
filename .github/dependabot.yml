@@ -1,0 +1,22 @@
+# Keeps dependencies moving on a schedule instead of letting an advisory sit
+# in the security tab until a push turns CI red. Minor and patch updates
+# arrive as one grouped pull request; majors arrive on their own, because
+# those need the changelog read before they merge.
+
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /booth
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Asia/Manila
+    groups:
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
